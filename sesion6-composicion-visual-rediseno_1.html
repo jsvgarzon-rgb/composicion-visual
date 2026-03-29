@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 6 — Formas en Movimiento y Composición Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+/* =====================================================
+   SESIÓN 6 — COMPOSICIÓN VISUAL
+   Rediseño premium: Obsidian Studio
+   ===================================================== */
+
+/* ─── SCROLLBAR PERSONALIZADA ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #07070f; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#6d28d9,#0891b2); border-radius: 999px; }
+
+/* ─── VARIABLES ─── */
+:root {
+  --bg-base: #07070f;
+  --bg-deep: #050508;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-hover: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.07);
+  --border-glow: rgba(109,40,217,0.45);
+
+  /* Accent palette */
+  --violet:   #7c3aed;
+  --violet-l: #a78bfa;
+  --violet-d: #4c1d95;
+  --cyan:     #06b6d4;
+  --cyan-l:   #67e8f9;
+  --emerald:  #059669;
+  --emerald-l:#6ee7b7;
+  --rose:     #e11d48;
+  --rose-l:   #fda4af;
+  --amber:    #d97706;
+  --amber-l:  #fcd34d;
+  --blue-400: #60a5fa;
+  --purple-400: #a78bfa;
+  --purple-300: #c4b5fd;
+
+  /* Aliases para el HTML existente */
+  --blue-900: #07070f;
+  --blue-800: #0d1154;
+  --blue-700: #1a1a6e;
+  --blue-600: #2563eb;
+  --blue-500: #3b82f6;
+  --blue-300: #93c5fd;
+  --purple-900: #1a0a2e;
+  --purple-800: #2d1254;
+  --purple-700: #4c1d95;
+  --purple-600: #7c3aed;
+  --purple-500: #8b5cf6;
+  --rose:     #e11d48;
+  --white: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
+  /* Fluid type scale */
+  --text-xl:  clamp(1.05rem, 1.8vw, 1.4rem);
+  --text-2xl: clamp(1.2rem,  2.2vw, 1.7rem);
+  --text-3xl: clamp(1.4rem,  2.8vw, 2.1rem);
+  --text-4xl: clamp(1.65rem, 3.2vw, 2.5rem);
+  --text-5xl: clamp(1.9rem,  3.8vw, 3rem);
+  --text-6xl: clamp(2.3rem,  4.5vw, 3.8rem);
+  --text-7xl: clamp(2.8rem,  5.5vw, 4.8rem);
+  --text-8xl: clamp(3.3rem,  6.5vw, 6rem);
+  --text-9xl: clamp(3.8rem,  7.5vw, 7.5rem);
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+
+  --shadow-card: 0 8px 40px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 30px rgba(124,58,237,0.25);
+  --shadow-glow-cyan: 0 0 30px rgba(6,182,212,0.2);
+}
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-base);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  line-height: 1.55;
+  /* Grain texture overlay */
+  position: relative;
+}
+/* Subtle grain */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.35;
+}
+img { max-width: 100%; display: block; }
+strong { font-weight: 700; }
+
+
+/* ─── TOP NAV ─── */
+#top-nav {
+  position: fixed;
+  top: 3px; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 28px;
+  height: 56px;
+  background: rgba(7,7,15,0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(124,58,237,0.18);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.4);
+}
+#top-nav .brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--violet-l);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+#top-nav .brand span { color: var(--cyan-l); }
+#top-nav .nav-links {
+  display: flex; gap: 4px;
+  flex-wrap: nowrap; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+#top-nav .nav-links::-webkit-scrollbar { display: none; }
+#top-nav .nav-links a {
+  font-size: 0.72rem; letter-spacing: 0.04em;
+  color: var(--slate-400); text-decoration: none;
+  padding: 5px 12px; border-radius: 999px;
+  border: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap; font-weight: 500;
+}
+#top-nav .nav-links a:hover, #top-nav .nav-links a.nav-active {
+  color: var(--violet-l);
+  border-color: rgba(124,58,237,0.35);
+  background: rgba(124,58,237,0.1);
+}
+#top-nav .nav-actions { display: flex; gap: 8px; align-items: center; }
+#top-nav button {
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.35);
+  color: var(--violet-l);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+#top-nav button:hover {
+  background: rgba(124,58,237,0.3);
+  color: white;
+  box-shadow: 0 0 20px rgba(124,58,237,0.25);
+}
+
+/* ─── HAMBURGER (mobile) ─── */
+#hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px; z-index: 1010;
+}
+#hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--violet-l);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+#hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#hamburger.open span:nth-child(2) { opacity: 0; }
+#hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav drawer */
+#mobile-drawer {
+  display: none;
+  position: fixed; top: 59px; left: 0; right: 0;
+  background: rgba(7,7,15,0.97);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(124,58,237,0.2);
+  z-index: 999;
+  padding: 16px 24px 20px;
+  flex-direction: column; gap: 4px;
+  transform: translateY(-8px); opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+#mobile-drawer.open {
+  transform: translateY(0); opacity: 1;
+}
+#mobile-drawer a {
+  color: var(--slate-300); text-decoration: none;
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  font-size: 0.95rem; font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+#mobile-drawer a:hover { color: var(--violet-l); background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.2); }
+
+@media (max-width: 900px) {
+  #top-nav .nav-links { display: none; }
+  #hamburger { display: flex; }
+  #mobile-drawer { display: flex; }
+}
+
+/* ─── SIDE DOTS ─── */
+#side-dots {
+  position: fixed; right: 14px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 998; display: flex;
+  flex-direction: column; gap: 7px;
+}
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(124,58,237,0.2);
+  border: 1.5px solid rgba(167,139,250,0.35);
+  cursor: pointer; transition: all 0.3s;
+  display: block;
+}
+.dot.active, .dot:hover {
+  background: var(--violet);
+  transform: scale(1.6);
+  box-shadow: 0 0 10px rgba(124,58,237,0.7);
+  border-color: var(--violet-l);
+}
+@media (max-width: 768px) { #side-dots { display: none; } }
+
+/* ─── BACK TO TOP ─── */
+#back-to-top {
+  position: fixed; bottom: 28px; right: 28px;
+  z-index: 999; width: 46px; height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  border: none; color: white; font-size: 1.2rem;
+  cursor: pointer; opacity: 0; pointer-events: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 24px rgba(124,58,237,0.5);
+  display: flex; align-items: center; justify-content: center;
+}
+#back-to-top.visible { opacity: 1; pointer-events: auto; }
+#back-to-top:hover { transform: translateY(-4px); box-shadow: 0 8px 36px rgba(124,58,237,0.7); }
+
+
+/* ─── SECTION BASE ─── */
+.slide {
+  min-height: 100vh; width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 80px 48px 72px;
+  position: relative; overflow: hidden;
+}
+.slide-inner {
+  max-width: 1200px; width: 100%; position: relative; z-index: 2;
+  opacity: 0; transform: translateY(48px);
+  transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1),
+              transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.slide-inner.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) { .slide { padding: 80px 20px 56px; } }
+
+/* ─── SLIDE BACKGROUNDS ─── */
+.bg-dark { background: var(--bg-base); }
+.bg-slate { background: var(--bg-base); }
+.bg-rose { background: var(--bg-base); }
+.bg-emerald { background: var(--bg-base); }
+.bg-amber { background: var(--bg-base); }
+.bg-cyan { background: var(--bg-base); }
+.bg-indigo { background: var(--bg-base); }
+.bg-dark-blue { background: var(--bg-base); }
+.bg-market { background: var(--bg-base); }
+.bg-white-s { background: var(--bg-base); }
+
+/* ─── AMBIENT ORBS (per-section atmospheric blobs) ─── */
+.slide::after {
+  content: '';
+  position: absolute; z-index: 0; pointer-events: none;
+  border-radius: 50%; filter: blur(80px);
+  opacity: 0; transition: opacity 1s;
+}
+.slide-inner.visible ~ .slide::after { opacity: 1; }
+
+/* ─── LABEL BADGE ─── */
+.label-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 24px; border-radius: 999px;
+  border: 1.5px solid rgba(124,58,237,0.5);
+  color: var(--violet-l);
+  background: rgba(124,58,237,0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  text-transform: uppercase; letter-spacing: 0.3em;
+  margin-bottom: 28px;
+  box-shadow: 0 0 20px rgba(124,58,237,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* ─── HERO TITLES ─── */
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: var(--text-9xl);
+  line-height: 0.92; letter-spacing: 0.02em;
+  color: white; margin-bottom: 24px;
+}
+.hero-gradient {
+  background: linear-gradient(125deg, var(--blue-400) 0%, var(--violet-l) 45%, var(--cyan-l) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(167,139,250,0.4));
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: var(--text-7xl);
+  color: white; margin-bottom: 16px;
+  letter-spacing: 0.02em; line-height: 1;
+}
+.section-subtitle {
+  font-size: var(--text-2xl);
+  color: var(--slate-400); font-weight: 300;
+  margin-bottom: 40px; line-height: 1.4;
+}
+.lead-text {
+  font-size: var(--text-3xl); font-weight: 300;
+  line-height: 1.45; color: var(--slate-200);
+}
+
+/* ─── GRIDS ─── */
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 40px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .grid-3 { grid-template-columns: 1fr; } }
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 60px rgba(0,0,0,0.5), var(--shadow-glow);
+  border-color: rgba(124,58,237,0.2);
+}
+.card-blue     { border-top: 3px solid var(--blue-400); }
+.card-purple   { border-top: 3px solid var(--violet-l); }
+.card-cyan     { border-top: 3px solid var(--cyan); }
+.card-emerald  { border-top: 3px solid var(--emerald); }
+.card-rose     { border-top: 3px solid var(--rose); }
+.card-amber    { border-left: 4px solid var(--amber); border-radius: var(--radius-md); }
+.card-emerald-left { border-left: 4px solid var(--emerald); border-radius: var(--radius-md); }
+.card-blue-left { border-left: 4px solid var(--blue-400); border-radius: var(--radius-md); }
+.card-red-left  { border-left: 4px solid var(--rose); border-radius: var(--radius-md); }
+.card-green-left { border-left: 4px solid #22c55e; border-radius: var(--radius-md); }
+
+.highlight-box {
+  background: rgba(124,58,237,0.07);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px; margin-top: 32px;
+  box-shadow: 0 0 40px rgba(124,58,237,0.08);
+}
+
+/* ─── ICON BOX ─── */
+.icon-box {
+  width: 76px; height: 76px; border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; margin-bottom: 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+.icon-box.purple  { background: linear-gradient(135deg, #4c1d95, #312e81); }
+.icon-box.emerald { background: linear-gradient(135deg, #064e3b, #065f46); }
+.icon-box.rose    { background: linear-gradient(135deg, #4c0519, #7f1d1d); }
+.icon-box.cyan    { background: linear-gradient(135deg, #0c4a6e, #155e75); }
+.icon-box.amber   { background: linear-gradient(135deg, #451a03, #78350f); }
+
+/* ─── TEXT UTILS ─── */
+.text-center { text-align: center; }
+.text-purple { color: var(--violet-l); }
+.text-blue   { color: var(--blue-300); }
+.text-cyan   { color: var(--cyan-l); }
+.text-emerald{ color: var(--emerald-l); }
+.text-rose   { color: var(--rose-l); }
+.text-amber  { color: var(--amber-l); }
+.text-slate  { color: var(--slate-300); }
+.mb-8 { margin-bottom: 32px; }
+.mb-6 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-2 { margin-bottom: 8px; }
+.mt-8 { margin-top: 32px; }
+.mt-4 { margin-top: 16px; }
+
+/* ─── QUOTE BOX ─── */
+.quote-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin-top: 32px;
+  backdrop-filter: blur(8px);
+  position: relative; overflow: hidden;
+}
+.quote-box::before {
+  content: '"';
+  position: absolute; top: -10px; left: 24px;
+  font-size: 8rem; font-family: Georgia, serif;
+  color: rgba(124,58,237,0.15); line-height: 1;
+  pointer-events: none;
+}
+.quote-box p {
+  font-size: var(--text-4xl); font-weight: 500;
+  font-style: italic; color: white; line-height: 1.4;
+  position: relative; z-index: 1;
+}
+
+/* ─── SLIDE 1: INTRO ─── */
+
+
+/* ─── SLIDE 2: EL DISEÑO ROTO ─── */
+
+.broken-design {
+  background: #fef08a; padding: 32px;
+  border-radius: var(--radius-md);
+  border: 6px solid var(--rose);
+  position: relative; overflow: hidden;
+  aspect-ratio: 16/9;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  box-shadow: 0 0 0 1px rgba(225,29,72,0.3), 0 16px 60px rgba(225,29,72,0.2);
+}
+.broken-design h1 {
+  color: #b91c1c; font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem,5vw,4rem); text-align: center;
+  text-shadow: 3px 3px 0 white; position: relative; z-index: 2; margin-bottom: 12px;
+}
+.broken-label-1 {
+  position: absolute; top: 12px; left: 12px;
+  color: #166534; font-size: clamp(1rem,2vw,1.5rem); font-weight: 700; z-index: 3;
+}
+.broken-label-2 {
+  position: absolute; bottom: 32px; right: 32px;
+  background: white; color: #2563eb;
+  padding: 8px 16px; border: 4px dashed black;
+  font-size: clamp(0.9rem,1.8vw,1.3rem); font-weight: 700; z-index: 3;
+}
+.broken-btn {
+  background: #7c3aed; color: #fde047;
+  padding: 16px 24px; font-size: clamp(1rem,2vw,1.5rem); font-weight: 900;
+  border-radius: 50%; position: absolute;
+  top: 45%; left: 20%; transform: translate(-50%,-50%);
+  z-index: 3; border: none; cursor: default;
+  animation: bounce 1s infinite alternate;
+}
+.broken-sticker {
+  background: #06b6d4; color: black;
+  padding: 8px 12px; font-size: clamp(0.7rem,1.5vw,1.1rem); font-weight: 700;
+  position: absolute; top: 48%; right: 20%;
+  transform: rotate(45deg); z-index: 3;
+}
+@keyframes bounce { from { transform: translate(-50%,-50%) translateY(0); } to { transform: translate(-50%,-50%) translateY(-8px); } }
+.broken-bg { position: absolute; inset: 0; object-fit: cover; opacity: 0.3; z-index: 1; mix-blend-mode: multiply; }
+.problems-list { list-style: none; }
+.problems-list li {
+  display: flex; align-items: center; gap: 16px;
+  font-size: var(--text-3xl); color: var(--slate-300); margin-bottom: 24px;
+}
+.problems-list li .dot-r { width: 12px; height: 12px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
+
+/* ─── UI/UX CARDS ─── */
+.ui-ux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media(max-width:700px){ .ui-ux-grid { grid-template-columns: 1fr; } }
+.ui-card, .ux-card { border-radius: var(--radius-lg); padding: 48px; text-align: center; background: var(--bg-card); }
+.ui-card { border-top: 3px solid var(--cyan); box-shadow: 0 0 30px rgba(6,182,212,0.06); }
+.ux-card { border-top: 3px solid var(--emerald); box-shadow: 0 0 30px rgba(5,150,105,0.06); }
+.ui-card .label { color: var(--cyan); }
+.ux-card .label { color: var(--emerald-l); }
+.uiux-icon { font-size: 3.5rem; margin-bottom: 16px; }
+.uiux-main { font-family:'Bebas Neue',sans-serif; font-size: var(--text-7xl); color: white; }
+.uiux-sub { font-size: var(--text-2xl); font-weight: 500; margin-bottom: 16px; }
+.uiux-desc { font-size: var(--text-xl); color: var(--slate-300); line-height: 1.6; }
+
+/* ─── PRINCIPLES GRID ─── */
+.principles-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-top: 32px;
+}
+@media(max-width:600px){ .principles-grid { grid-template-columns: 1fr; } }
+.principle-item {
+  background: rgba(124,58,237,0.08);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: var(--radius-md);
+  padding: 22px 28px;
+  font-size: var(--text-2xl); color: var(--violet-l); font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+  cursor: default;
+}
+.principle-item:hover {
+  background: rgba(124,58,237,0.16);
+  border-color: rgba(124,58,237,0.45);
+  transform: translateX(8px);
+  box-shadow: -4px 0 20px rgba(124,58,237,0.15);
+}
+
+/* ─── SIZE DEMO ─── */
+.size-demo {
+  background: var(--bg-card); border-radius: var(--radius-lg); padding: 48px;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+  border: 1px solid var(--border);
+}
+.circle-big { width: 140px; height: 140px; border-radius: 50%; background: var(--rose); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem; box-shadow: 0 0 50px rgba(225,29,72,0.45), 0 0 0 8px rgba(225,29,72,0.1); }
+.circle-med { width: 80px; height: 80px; border-radius: 50%; background: var(--slate-600); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; text-align: center; }
+.circle-sm  { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-700); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.55rem; text-align: center; }
+
+/* ─── PHONE MOCKUP ─── */
+.phone-mockup {
+  background: #141414; width: min(280px, 100%);
+  border-radius: var(--radius-xl);
+  border: 7px solid #2a2a2a;
+  padding: 24px 20px;
+  display: flex; flex-direction: column; position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+  margin: 0 auto;
+}
+.phone-notch { width: 40%; height: 18px; background: #222; border-radius: 999px; margin: 0 auto 28px; }
+.phone-balance { color: var(--slate-400); font-size: 0.9rem; margin-bottom: 4px; }
+.phone-amount { color: white; font-size: 2.4rem; font-weight: 900; margin-bottom: 20px; }
+.phone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.phone-tile { background: #222; height: 60px; border-radius: 14px; }
+.phone-cta { background: #ec4899; color: white; border: none; border-radius: 999px; padding: 18px; font-size: 1.3rem; font-weight: 700; width: 100%; cursor: default; animation: glow-pink 2s infinite; }
+@keyframes glow-pink { 0%,100%{box-shadow:0 0 0 #ec4899;} 50%{box-shadow:0 0 30px #ec4899;} }
+
+/* ─── TYPOGRAPHY DEMO ─── */
+.typo-demo { background: white; border-radius: var(--radius-lg); padding: 40px; color: var(--slate-900); display: flex; flex-direction: column; gap: 16px; box-shadow: 0 16px 60px rgba(0,0,0,0.4); }
+.typo-h1 { font-family:'Bebas Neue',sans-serif; font-size: clamp(1.8rem,4vw,3rem); font-weight: 900; letter-spacing: -0.02em; color: #0f172a; }
+.typo-h2 { font-size: clamp(1.2rem,2.5vw,1.8rem); font-weight: 700; color: #334155; }
+.typo-p  { font-size: clamp(0.9rem,1.8vw,1.1rem); color: #64748b; line-height: 1.6; }
+
+/* ─── MARKET CARDS ─── */
+.market-wrap { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+.market-card { flex: 1; min-width: min(340px,100%); max-width: 540px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 20px 70px rgba(0,0,0,0.6); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.market-card:hover { transform: translateY(-4px); box-shadow: 0 28px 80px rgba(0,0,0,0.7); }
+.market-card-body { padding: 32px; flex: 1; }
+.market-card-footer { padding: 20px 32px; border-top: 1px solid rgba(255,255,255,0.05); font-size: var(--text-xl); color: var(--slate-400); line-height: 1.5; }
+.market-card-footer strong { color: white; }
+
+/* ─── THIRDS DEMO ─── */
+.thirds-demo { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 28px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.05); }
+.thirds-demo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.thirds-demo .overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,7,15,0.9) 0%, rgba(7,7,15,0.5) 55%, transparent 100%); }
+.thirds-grid-overlay { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; pointer-events: none; }
+.thirds-grid-overlay div { border: 1px solid rgba(6,182,212,0.25); }
+.thirds-content { position: absolute; top: 18%; left: 5%; max-width: 46%; z-index: 2; }
+.thirds-content h3 { font-family:'Bebas Neue',sans-serif; font-size: clamp(2rem,4vw,3.5rem); color: white; line-height: 1; margin-bottom: 12px; }
+.thirds-content p { font-size: clamp(0.9rem,1.8vw,1.2rem); color: var(--slate-200); margin-bottom: 20px; }
+.thirds-btn { background: var(--cyan); color: white; border: none; border-radius: 999px; padding: 14px 28px; font-size: clamp(0.9rem,1.8vw,1.2rem); font-weight: 700; cursor: default; box-shadow: 0 0 20px rgba(6,182,212,0.4); }
+.thirds-dot { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: rgba(6,182,212,0.7); transform: translate(-50%,-50%); animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1);} 50%{opacity:1;transform:translate(-50%,-50%) scale(1.5);} }
+
+/* ─── GRID ANATOMY ─── */
+.grid-anatomy { width: 100%; background: #0d0f1a; border-radius: var(--radius-lg); padding: 24px; position: relative; overflow: hidden; border: 1px solid var(--border); }
+.grid-cols { display: flex; gap: 8px; padding: 0 32px; height: 140px; align-items: stretch; position: relative; }
+.grid-col { flex: 1; background: rgba(99,102,241,0.18); border: 1px solid rgba(129,140,248,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: rgba(165,180,252,0.7); font-weight: 700; transition: background 0.2s; }
+.grid-col:hover { background: rgba(99,102,241,0.32); }
+.margin-l, .margin-r { position: absolute; top: 0; bottom: 0; width: 32px; background: rgba(225,29,72,0.12); display: flex; align-items: center; justify-content: center; }
+.margin-l { left: 0; border-right: 2px solid rgba(225,29,72,0.5); }
+.margin-r { right: 0; border-left: 2px solid rgba(225,29,72,0.5); }
+.margin-l span, .margin-r span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.6rem; font-weight: 700; color: var(--rose); letter-spacing: 0.2em; }
+.grid-legend { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 20px; }
+.grid-legend-item { background: var(--bg-card); border-radius: var(--radius-sm); padding: 18px; text-align: center; border: 1px solid var(--border); }
+.grid-legend-item h4 { font-size: var(--text-xl); font-weight: 700; margin-bottom: 6px; }
+.grid-legend-item p { font-size: 0.9rem; color: var(--slate-400); }
+
+/* ─── FLOW Z/F ─── */
+.flow-demo { background: #0d0f1a; border-radius: var(--radius-lg); padding: 40px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+.flow-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px; }
+.flow-logo { width: 60px; height: 20px; background: white; border-radius: 4px; }
+.flow-nav-links { display: flex; gap: 16px; align-items: center; }
+.flow-nav-link { width: 50px; height: 10px; background: var(--slate-600); border-radius: 4px; }
+.flow-nav-cta { width: 70px; height: 28px; background: var(--emerald); border-radius: 999px; box-shadow: 0 0 14px rgba(5,150,105,0.4); }
+.flow-hero { margin-bottom: 48px; display: flex; justify-content: center; }
+.flow-hero-box { width: 80%; height: 100px; background: var(--slate-700); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--slate-500); font-size: 1rem; }
+.flow-footer { display: flex; justify-content: space-between; align-items: flex-end; }
+.flow-text { width: 50%; }
+.flow-text-line { height: 16px; background: var(--slate-600); border-radius: 4px; margin-bottom: 10px; }
+.flow-cta-btn { width: 120px; height: 50px; background: var(--emerald); border-radius: 999px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; box-shadow: 0 0 20px rgba(5,150,105,0.4); }
+.flow-z-path { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+
+/* ─── RESPONSIVE DEMOS ─── */
+.responsive-demos { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: center; margin-top: 40px; }
+.resp-device { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.resp-screen { border: 3px solid rgba(129,140,248,0.6); border-radius: 12px; padding: 8px; background: #0d0f1a; display: flex; gap: 4px; box-shadow: 0 0 20px rgba(99,102,241,0.15); }
+.resp-col { background: rgba(99,102,241,0.3); border-radius: 4px; flex: 1; }
+.resp-screen.desktop { width: 180px; height: 100px; }
+.resp-screen.tablet { width: 110px; height: 130px; flex-direction: column; flex-wrap: nowrap; }
+.resp-screen.tablet .resp-col { width: auto; height: auto; flex: 1; }
+.resp-screen.mobile { width: 60px; height: 110px; flex-direction: column; flex-wrap: nowrap; }
+.resp-screen.mobile .resp-col { width: auto; height: auto; flex: 1; }
+.resp-icon { font-size: 2rem; }
+.resp-label { font-size: var(--text-xl); font-weight: 700; color: white; }
+.resp-sub { font-size: 0.9rem; color: rgba(129,140,248,0.8); }
+
+/* ─── STACKING DEMO ─── */
+.stacking-demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media(max-width:700px){ .stacking-demo-grid { grid-template-columns: 1fr; } }
+.stacking-box { background: var(--bg-card); border-radius: var(--radius-lg); padding: 32px; border: 1px solid var(--border); text-align: center; }
+.stacking-box h3 { font-size: var(--text-2xl); font-weight: 700; color: white; margin-bottom: 24px; }
+.desktop-row { background: #0d0f1a; border-radius: 12px; padding: 16px; display: flex; gap: 12px; height: 100px; }
+.desktop-row .b1 { flex: 1; background: var(--rose); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.3rem; }
+.desktop-row .b2 { flex: 1; background: var(--emerald); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.3rem; }
+.desktop-row .b3 { flex: 2; background: var(--cyan); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--slate-900); font-weight: 800; font-size: 1.3rem; }
+.mobile-col { width: 120px; border: 4px solid var(--slate-700); border-radius: 24px; padding: 12px; background: #0d0f1a; display: flex; flex-direction: column; gap: 10px; margin: 0 auto; }
+.mobile-col .b1 { height: 60px; background: var(--rose); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.2rem; }
+.mobile-col .b2 { height: 60px; background: var(--emerald); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.2rem; }
+.mobile-col .b3 { height: 80px; background: var(--cyan); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--slate-900); font-weight: 800; font-size: 1.2rem; }
+
+/* ─── BROKEN PIECES GRID ─── */
+.broken-pieces-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 32px; }
+@media(max-width:1100px){ .broken-pieces-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:600px){ .broken-pieces-grid { grid-template-columns: 1fr; } }
+.broken-piece { border-radius: var(--radius-md); overflow: hidden; height: 220px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: default; }
+.broken-piece:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 60px rgba(0,0,0,0.6); }
+.broken-piece .piece-label { position: absolute; top: 8px; right: 8px; background: rgba(7,7,15,0.9); color: white; font-size: 0.68rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--slate-600); z-index: 20; backdrop-filter: blur(8px); }
+.piece-1 { background: #22c55e; border: 6px solid var(--rose); }
+.piece-2 { background: white; border: 4px solid #e2e8f0; color: var(--slate-900); }
+.piece-3 { background: #7c3aed; border: 4px solid #fde047; }
+.piece-4 { background: #bfdbfe; border: 4px solid #1e40af; color: var(--slate-900); }
+.piece-5 { background: white; border: 4px solid #e2e8f0; color: var(--slate-900); }
+.piece-6 { background: #fed7aa; border: 4px solid #92400e; color: var(--slate-900); }
+.piece-7 { background: #f3f4f6; border: 4px solid #9ca3af; color: var(--slate-900); }
+.piece-inner { width:100%; height:100%; padding:12px; position:relative; overflow:hidden; }
+.p1-title { position:absolute; top:8px; left:8px; font-family:serif; font-size:1.5rem; color:#b91c1c; text-shadow:2px 2px 0 white; z-index:2; font-weight:700; }
+.p1-img { position:absolute; inset:0; object-fit:cover; opacity:0.5; z-index:1; width:100%; height:100%; }
+.p1-badge { position:absolute; bottom:24px; right:4px; background:#2563eb; color:#fde047; font-weight:700; padding:4px 8px; font-size:0.9rem; z-index:3; }
+.p1-tel { position:absolute; top:50%; left:4px; background:black; color:white; font-size:0.65rem; padding:2px 4px; writing-mode:vertical-rl; z-index:3; }
+.p2-title { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; font-weight:900; text-align:center; line-height:1; padding:8px; }
+.p2-img { width:100%; height:42%; object-fit:cover; }
+.p2-btn { background:black; color:white; width:100%; padding:12px; font-size:1rem; font-weight:700; border:none; text-align:center; }
+.p2-terms { font-size:0.5rem; color:#9ca3af; text-align:center; padding:4px; }
+.p3-img { position:absolute; inset:0; object-fit:cover; opacity:0.5; z-index:1; width:100%; height:100%; }
+.p3-title { position:absolute; top:24px; text-align:center; width:calc(100% - 24px); background:rgba(220,38,38,0.8); color:white; font-size:1.1rem; font-weight:700; padding:8px; z-index:2; }
+.p3-secret { position:absolute; bottom:24px; left:8px; color:#fde047; font-size:1.8rem; font-weight:900; text-shadow:2px 2px 0 black; z-index:2; }
+.p3-mira { position:absolute; top:48%; right:8px; background:#2563eb; color:white; font-size:0.8rem; padding:4px 8px; z-index:2; }
+.p4-title { font-size:1.1rem; font-weight:700; text-decoration:underline; color:#1e40af; margin-bottom:8px; }
+.p4-text { font-size:0.45rem; color:#dc2626; line-height:1.3; }
+.p5-img { width:100%; height:38%; object-fit:cover; margin-bottom:6px; }
+.p5-name { font-size:0.75rem; font-weight:700; line-height:1.2; }
+.p5-btn { background:#f97316; color:white; font-size:0.5rem; padding:4px 8px; margin-top:auto; display:inline-block; }
+.p6-title { font-family:serif; font-style:italic; font-size:1.4rem; text-align:center; margin-bottom:10px; color:#92400e; }
+.p6-item { font-size:0.5rem; font-weight:700; white-space:nowrap; overflow:hidden; margin-bottom:4px; }
+.p6-promo { font-size:0.55rem; color:#dc2626; font-weight:700; text-align:center; margin-top:auto; }
+.p7-banner { background:#dc2626; color:white; text-align:center; font-size:0.65rem; padding:4px; font-weight:700; margin-bottom:6px; }
+.p7-ad { background:#fef08a; text-align:center; font-size:0.55rem; font-weight:700; padding:6px; border:2px dashed #9ca3af; margin-bottom:6px; }
+.p7-headline { font-size:0.9rem; font-weight:900; line-height:1.2; margin-bottom:6px; }
+.p7-row { display:flex; gap:8px; }
+.p7-img { width:45%; height:50px; object-fit:cover; }
+.p7-body { font-size:0.5rem; color:#374151; line-height:1.4; }
+
+/* ─── BEFORE/AFTER TABS ─── */
+.examples-selector { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+.example-tab {
+  padding: 9px 20px; border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--slate-300);
+  cursor: pointer; font-size: 0.84rem;
+  font-family: 'Outfit', sans-serif; font-weight: 500;
+  transition: all 0.2s;
+}
+.example-tab.active {
+  background: linear-gradient(135deg, var(--violet), #2563eb);
+  border-color: transparent; color: white; font-weight: 700;
+  box-shadow: 0 0 20px rgba(124,58,237,0.3);
+}
+.example-tab:hover:not(.active) { background: rgba(255,255,255,0.08); }
+.before-after { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 16px; align-items: center; margin-bottom: 32px; }
+@media(max-width:700px){ .before-after { grid-template-columns: 1fr; } .arrow-middle { display: none; } }
+.before-after-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 12px; }
+.ba-before .before-after-label { color: var(--rose); }
+.ba-after .before-after-label { color: var(--emerald-l); }
+.arrow-middle { background: var(--bg-card); border: 1px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--slate-400); font-size: 1.1rem; }
+.diagnosis-solution { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media(max-width:600px){ .diagnosis-solution { grid-template-columns: 1fr; } }
+.diag-box, .sol-box { border-radius: var(--radius-md); padding: 28px; }
+.diag-box { background: rgba(225,29,72,0.06); border: 1px solid rgba(225,29,72,0.18); }
+.sol-box  { background: rgba(5,150,105,0.06); border: 1px solid rgba(5,150,105,0.18); }
+.diag-box h4 { color: var(--rose-l); font-size: var(--text-xl); font-weight: 700; margin-bottom: 16px; }
+.sol-box h4  { color: var(--emerald-l); font-size: var(--text-xl); font-weight: 700; margin-bottom: 16px; }
+.diag-box ul, .sol-box ul { list-style: none; }
+.diag-box ul li, .sol-box ul li { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; font-size: var(--text-xl); color: var(--slate-300); line-height: 1.4; }
+.diag-box ul li::before { content: '•'; color: var(--rose-l); flex-shrink: 0; margin-top: 2px; }
+.sol-box ul li::before  { content: '✓'; color: var(--emerald-l); flex-shrink: 0; margin-top: 2px; }
+.example-panel { display: none; }
+.example-panel.active { display: block; }
+.mini-preview { border-radius: var(--radius-sm); overflow: hidden; height: 160px; position: relative; }
+.mini-flyer-bad  { background: #22c55e; border: 5px solid var(--rose); display: flex; align-items: center; justify-content: center; height: 100%; position: relative; overflow: hidden; }
+.mini-flyer-good { background: var(--bg-base); display: flex; height: 100%; position: relative; overflow: hidden; }
+.mini-moda-bad  { background: white; color: black; padding: 8px; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+.mini-moda-good { background: #f4f4f4; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+.mini-ppt-bad  { background: #bfdbfe; padding: 8px; height: 100%; overflow: hidden; }
+.mini-ppt-good { background: white; padding: 12px; height: 100%; overflow: hidden; color: var(--slate-900); }
+
+/* ─── ACTIVITY CARD ─── */
+.activity-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-xl); padding: 48px;
+  backdrop-filter: blur(16px); max-width: 900px; margin: 0 auto;
+  box-shadow: var(--shadow-card);
+}
+.activity-card ol { list-style: decimal; padding-left: 28px; }
+.activity-card ol li { font-size: var(--text-2xl); color: var(--slate-300); margin-bottom: 20px; line-height: 1.5; }
+.activity-card ol li strong { color: white; }
+
+/* ─── LANDING MOCKUP ─── */
+.landing-mockup { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 100px rgba(0,0,0,0.7); background: white; max-width: 900px; margin: 0 auto; }
+.lp-header { display:flex; justify-content:space-between; align-items:center; padding:20px 32px; border-bottom:1px solid #e2e8f0; background:white; }
+.lp-logo { display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.2rem; color:var(--slate-900); }
+.lp-logo-icon { width:32px; height:32px; background:var(--emerald); border-radius:8px; }
+.lp-nav { display:flex; gap:24px; color:var(--slate-500); font-size:0.9rem; font-weight:500; }
+.lp-login { color:var(--emerald); font-weight:700; font-size:0.9rem; }
+.lp-hero { display:grid; grid-template-columns:1fr 1fr; min-height:260px; }
+.lp-text { padding:40px 40px 40px 48px; display:flex; flex-direction:column; justify-content:center; background:white; }
+.lp-text h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(1.5rem,3vw,2.5rem); color:var(--slate-900); line-height:1; margin-bottom:16px; }
+.lp-text p { font-size:clamp(0.8rem,1.5vw,1rem); color:var(--slate-500); margin-bottom:24px; line-height:1.5; }
+.lp-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.lp-btn-primary { background:var(--emerald); color:white; border:none; border-radius:999px; padding:14px 24px; font-weight:700; font-size:0.95rem; cursor:default; box-shadow:0 4px 20px rgba(5,150,105,0.35); }
+.lp-btn-secondary { background:white; color:var(--slate-700); border:1px solid #e2e8f0; border-radius:999px; padding:14px 24px; font-weight:700; font-size:0.95rem; cursor:default; }
+.lp-image { position:relative; overflow:hidden; background:var(--slate-100); }
+.lp-image img { width:100%; height:100%; object-fit:cover; }
+.lp-analysis { background:var(--slate-900); padding:20px 32px; border-top:1px solid var(--slate-800); font-size:clamp(0.8rem,1.5vw,1rem); color:var(--slate-300); line-height:1.5; }
+.lp-analysis strong { color:var(--emerald-l); }
+@media(max-width:700px){ .lp-hero { grid-template-columns:1fr; } .lp-image { height:200px; } .lp-nav { display:none; } }
+
+/* ─── SPOTIFY DEMO ─── */
+.spotify-demo { background:#121212; border-radius:var(--radius-md); padding:24px; display:flex; flex-direction:column; gap:16px; }
+.sp-album-row { display:flex; gap:20px; align-items:center; }
+.sp-album-img { width:100px; height:100px; border-radius:8px; object-fit:cover; flex-shrink:0; box-shadow:0 8px 30px rgba(0,0,0,0.5); }
+.sp-album-title { font-size:clamp(1.2rem,2.5vw,2rem); font-weight:700; color:white; }
+.sp-artist { font-size:clamp(0.85rem,1.5vw,1.2rem); color:var(--slate-300); }
+.sp-controls { display:flex; gap:16px; align-items:center; }
+.sp-play-btn { width:52px; height:52px; background:#1ed760; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:default; flex-shrink:0; box-shadow:0 0 20px rgba(30,215,96,0.4); }
+.sp-play-btn svg { width:22px; height:22px; margin-left:3px; }
+.analysis-badge { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px 24px; font-size:var(--text-xl); color:var(--slate-400); margin-top:16px; }
+.analysis-badge strong { color:white; }
+
+/* ─── NEGATIVE SPACE DEMO ─── */
+.neg-space-demo { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:32px; }
+@media(max-width:700px){ .neg-space-demo { grid-template-columns:1fr; } }
+.macro-box, .micro-box { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); padding:28px; text-align:center; }
+.macro-box h3 { color:var(--emerald-l); font-size:var(--text-2xl); font-weight:700; margin-bottom:12px; }
+.micro-box h3 { color:var(--cyan-l); font-size:var(--text-2xl); font-weight:700; margin-bottom:12px; }
+.macro-visual { height:140px; background:rgba(0,0,0,0.4); border:2px dashed rgba(5,150,105,0.4); border-radius:var(--radius-sm); padding:12px; display:flex; flex-direction:column; justify-content:space-between; }
+.macro-block { height:36px; background:rgba(255,255,255,0.12); border-radius:6px; }
+.macro-space { flex:1; background:rgba(5,150,105,0.12); border-radius:6px; display:flex; align-items:center; justify-content:center; margin:8px 0; }
+.macro-space span { color:var(--emerald-l); font-size:0.7rem; font-weight:700; letter-spacing:0.1em; }
+.micro-visual { height:140px; background:rgba(255,255,255,0.06); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
+.micro-line { height:18px; background:rgba(255,255,255,0.22); border-radius:4px; margin-bottom:4px; }
+.micro-gap { height:8px; background:rgba(6,182,212,0.2); border-radius:4px; margin-bottom:4px; display:flex; align-items:center; padding-left:6px; }
+.micro-gap span { font-size:0.5rem; color:var(--cyan-l); font-weight:700; }
+.micro-btn { background:var(--cyan); color:var(--slate-900); border:none; border-radius:999px; padding:8px 20px; font-weight:700; font-size:0.75rem; margin-top:12px; cursor:default; }
+
+/* ─── LEADING LINES ─── */
+.leading-lines-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+@media(max-width:700px){ .leading-lines-grid { grid-template-columns:1fr; } }
+.ll-card { background:var(--slate-800); border:1px solid var(--slate-700); border-radius:var(--radius-md); padding:24px; overflow:hidden; transition:transform 0.3s ease; }
+.ll-card:hover { transform:translateY(-3px); }
+.ll-card h3 { font-size:var(--text-2xl); font-weight:700; color:white; margin-bottom:16px; }
+.ll-demo { border-radius:var(--radius-sm); overflow:hidden; position:relative; aspect-ratio:16/9; background:var(--slate-700); }
+.ll-demo img { width:100%; height:100%; object-fit:cover; object-position:left center; }
+.ll-cta { position:absolute; right:16px; top:50%; transform:translateY(-50%); background:white; padding:16px 20px; border-radius:var(--radius-sm); box-shadow:0 8px 24px rgba(0,0,0,0.5); }
+.ll-cta h4 { font-size:1rem; font-weight:700; color:var(--slate-900); margin-bottom:8px; }
+.ll-cta button { background:var(--rose); color:white; border:none; border-radius:999px; padding:8px 16px; font-weight:700; cursor:default; font-size:0.85rem; }
+.ll-shapes { width:100%; aspect-ratio:16/9; background:linear-gradient(135deg,#1e1b4b,#0d0f1a); border-radius:var(--radius-sm); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.ll-shape-tl { position:absolute; top:0; left:0; width:55%; height:55%; background:rgba(99,102,241,0.2); border-radius:0 0 100% 0; }
+.ll-shape-br { position:absolute; bottom:0; right:0; width:55%; height:55%; background:rgba(6,182,212,0.15); border-radius:100% 0 0 0; }
+.ll-center-btn { background:white; color:#312e81; border-radius:999px; padding:16px 32px; font-weight:900; font-size:1rem; position:relative; z-index:2; cursor:default; box-shadow:0 0 40px rgba(255,255,255,0.2); }
+
+/* ─── SECTION DIVIDER ─── */
+.section-divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--violet), var(--cyan)); border-radius: 2px; margin: 20px 0; }
+.section-divider.centered { margin: 20px auto; }
+
+/* ─── ANIMATIONS ─── */
+.fade-stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0s; }
+.fade-stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.1s; }
+.fade-stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.2s; }
+.fade-stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.3s; }
+.fade-stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay:0.4s; }
+.fade-stagger.visible > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay:0.5s; }
+
+/* ─── SCROLL HINT ─── */
+.scroll-hint { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--slate-600); font-size:0.78rem; animation:scrollBounce 2s infinite; }
+@keyframes scrollBounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(8px);} }
+.scroll-hint svg { width:18px; height:18px; }
+
+/* ─── CLOSING SLIDE ─── */
+
+
+/* ─── CUSTOM: section-number decoration ─── */
+.slide:not(#s1) .section-title::before {
+  display: none; /* Clean, no section numbers to clutter */
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- TOP NAVIGATION -->
+<nav id="top-nav">
+  <div class="brand">Sesión 6 · Composición Visual</div>
+  <div class="nav-links">
+    <a href="#s1">Intro</a>
+    <a href="#s3">Problema</a>
+    <a href="#s6">Principios</a>
+    <a href="#s7">Jerarquía</a>
+    <a href="#s12">Tercios</a>
+    <a href="#s15">Retícula</a>
+    <a href="#s18">Espacio Neg.</a>
+    <a href="#s21">Flujo</a>
+    <a href="#s25">Responsivo</a>
+    <a href="#s28">Actividad</a>
+    <a href="#s33">Cierre</a>
+  </div>
+  <button id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  <div class="nav-actions">
+    <button id="btn-fullscreen">⛶ Pantalla Completa</button>
+  </div>
+</nav>
+
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer">
+  <a href="#s1">Intro</a>
+  <a href="#s3">Problema</a>
+  <a href="#s6">Principios</a>
+  <a href="#s7">Jerarquía</a>
+  <a href="#s12">Tercios</a>
+  <a href="#s15">Retícula</a>
+  <a href="#s18">Espacio Neg.</a>
+  <a href="#s21">Flujo</a>
+  <a href="#s25">Responsivo</a>
+  <a href="#s28">Actividad</a>
+  <a href="#s33">Cierre</a>
+</div>
+
+<!-- SIDE DOTS -->
+<div id="side-dots"></div>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" title="Volver arriba">↑</button>
+
+
+<!-- =========================================
+     SECCIONES / SLIDES
+     ========================================= -->
+
+<!-- S1: INTRO -->
+<section class="slide" id="s1">
+  <div class="slide-inner text-center">
+    <div class="label-badge">Sesión 6</div>
+    <h1 class="hero-title">
+      FORMAS EN<br>
+      <span class="hero-gradient">MOVIMIENTO</span><br>
+      Y COMPOSICIÓN VISUAL
+    </h1>
+    <p style="font-size:var(--text-4xl);color:var(--slate-400);font-weight:300;margin-top:24px;">
+      Conviértete en el arquitecto de la pantalla.
+    </p>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- S2: EL DISEÑO ROTO -->
+<section class="slide bg-slate" id="s2">
+  <div class="slide-inner">
+    <div style="display:flex;align-items:center;gap:24px;margin-bottom:48px;">
+      <span style="font-size:3.5rem;">⚠️</span>
+      <h2 class="section-title" style="margin:0;">El Diseño Roto</h2>
+    </div>
+    <div class="grid-2">
+      <!-- Bad design example -->
+      <div class="broken-design">
+        <h1>SUPER PROMOCIÓN!!!</h1>
+        <span class="broken-label-1">Compra ya</span>
+        <span class="broken-label-2">Descuento del 50% en todo</span>
+        <img class="broken-bg" src="https://picsum.photos/seed/bad/800/600" alt="Random" referrerpolicy="no-referrer">
+        <button class="broken-btn">Click aquí</button>
+        <div class="broken-sticker">¡No te lo pierdas!</div>
+      </div>
+      <!-- Analysis -->
+      <div>
+        <h3 style="font-size:var(--text-4xl);color:var(--rose);font-weight:700;margin-bottom:32px;">¿Qué está mal aquí?</h3>
+        <ul class="problems-list fade-stagger">
+          <li><span class="dot-r"></span> Texto sobre imagen sin contraste</li>
+          <li><span class="dot-r"></span> Elementos amontonados sin orden</li>
+          <li><span class="dot-r"></span> Jerarquía inexistente (¿qué leo primero?)</li>
+          <li><span class="dot-r"></span> Colores que compiten entre sí</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: SOBRECARGA COGNITIVA -->
+<section class="slide" id="s3">
+  <div class="slide-inner text-center">
+    <div style="font-size:5rem;margin-bottom:32px;">🧠</div>
+    <h2 class="section-title">Sobrecarga Cognitiva</h2>
+    <p class="lead-text" style="max-width:800px;margin:0 auto 48px;color:#fecaca;">
+      Cuando el cerebro recibe demasiada información visual sin orden, se frustra y abandona la página.
+    </p>
+    <div class="quote-box" style="max-width:750px;margin:0 auto;">
+      <p>"Si todo resalta, <span style="color:var(--rose);">nada resalta</span>."</p>
+    </div>
+  </div>
+</section>
+
+<!-- S4: ¿QUÉ ES LA COMPOSICIÓN VISUAL? -->
+<section class="slide" id="s4">
+  <div class="slide-inner text-center">
+    <div class="icon-box emerald" style="margin:0 auto 32px;">
+      <span>🖼️</span>
+    </div>
+    <h2 class="section-title">¿Qué es la Composición Visual?</h2>
+    <p class="lead-text" style="max-width:800px;margin:0 auto 32px;color:#a7f3d0;">
+      Es el <strong style="color:white;">esqueleto invisible</strong> de tu diseño. Es el arte de organizar formas, textos e imágenes en un espacio.
+    </p>
+    <div class="highlight-box" style="max-width:800px;margin:0 auto;border-color:rgba(16,185,129,0.3);">
+      <p style="font-size:var(--text-3xl);color:white;font-weight:500;line-height:1.4;">
+        Una buena composición guía el ojo del usuario <span style="color:var(--emerald);text-decoration:underline;">exactamente</span> hacia donde tú quieres.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- S5: COMPOSICIÓN EN APPS (UI vs UX) -->
+<section class="slide bg-slate" id="s5">
+  <div class="slide-inner">
+    <h2 class="section-title text-center">Composición Visual en Apps</h2>
+    <div class="section-divider centered"></div>
+    <div class="ui-ux-grid">
+      <div class="ui-card card">
+        <div class="uiux-icon">📱</div>
+        <div class="uiux-main">UI</div>
+        <p class="uiux-sub label">User Interface</p>
+        <p class="uiux-desc">Cómo se <strong>VE</strong>. La estética, los colores, las formas, la tipografía y el balance visual de la pantalla.</p>
+      </div>
+      <div class="ux-card card">
+        <div class="uiux-icon">👥</div>
+        <div class="uiux-main">UX</div>
+        <p class="uiux-sub label">User Experience</p>
+        <p class="uiux-desc">Cómo se <strong>SIENTE</strong> y <strong>FUNCIONA</strong>. ¿Es fácil encontrar el botón de compra? ¿El usuario se pierde?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6: LOS 6 PRINCIPIOS -->
+<section class="slide" id="s6">
+  <div class="slide-inner text-center">
+    <div style="font-size:4rem;margin-bottom:24px;">📚</div>
+    <h2 class="section-title">Los 6 Principios de la<br><span class="text-purple">Composición Visual</span></h2>
+    <div class="principles-grid fade-stagger">
+      <div class="principle-item">1. Jerarquía Visual</div>
+      <div class="principle-item">2. Regla de los Tercios</div>
+      <div class="principle-item">3. Sistema de Retícula (Grid)</div>
+      <div class="principle-item">4. Espacio Negativo</div>
+      <div class="principle-item">5. Flujo Visual</div>
+      <div class="principle-item">6. Diseño Responsivo</div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: JERARQUÍA VISUAL INTRO -->
+<section class="slide" id="s7">
+  <div class="slide-inner text-center">
+    <div style="font-size:5rem;margin-bottom:24px;">👑</div>
+    <h2 class="section-title">1. Jerarquía Visual</h2>
+    <p class="lead-text" style="color:#fde68a;margin-bottom:40px;">¿Quién manda en la pantalla?</p>
+    <div class="highlight-box" style="max-width:800px;margin:0 auto;border-color:rgba(245,158,11,0.3);">
+      <p style="font-size:var(--text-3xl);color:white;line-height:1.6;">
+        Es el orden en el que el ojo humano percibe lo que ve. Le decimos al usuario:<br><br>
+        <strong style="color:#fbbf24;">"Mira esto primero, luego esto, y al final esto."</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- S8: JERARQUÍA POR TAMAÑO -->
+<section class="slide bg-slate" id="s8">
+  <div class="slide-inner">
+    <h2 class="section-title">Jerarquía por Tamaño</h2>
+    <div class="grid-2" style="align-items:center;">
+      <div>
+        <p class="lead-text" style="margin-bottom:24px;">El instinto humano nos hace prestar atención a las cosas <strong style="color:white;">más grandes</strong> primero. Es supervivencia básica.</p>
+        <p style="font-size:var(--text-2xl);color:var(--slate-400);">En diseño, si quieres que algo se lea de inmediato, hazlo enorme.</p>
+      </div>
+      <div class="size-demo">
+        <div class="circle-big">MÍRAME</div>
+        <div style="display:flex;gap:24px;align-items:center;">
+          <div class="circle-med">luego a mí</div>
+          <div class="circle-sm">y a mí</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S9: JERARQUÍA POR COLOR -->
+<section class="slide bg-slate" id="s9">
+  <div class="slide-inner">
+    <h2 class="section-title">Jerarquía por Color</h2>
+    <div class="grid-2" style="align-items:center;">
+      <div>
+        <p class="lead-text" style="margin-bottom:24px;">El contraste dirige la atención. Un color vibrante sobre un fondo neutro es un imán para los ojos.</p>
+        <div class="card card-red-left" style="background:rgba(255,255,255,0.04);padding:28px;">
+          <p style="font-size:var(--text-xl);color:white;line-height:1.6;">
+            <strong>Ejemplo: Nequi</strong><br>
+            Usan fondos oscuros o blancos, pero el botón de "Enviar plata" o el saldo siempre resalta en su característico color rosado brillante.
+          </p>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <p class="phone-balance">Disponible</p>
+          <h3 class="phone-amount">$ 150.000</h3>
+          <div class="phone-grid">
+            <div class="phone-tile"></div>
+            <div class="phone-tile"></div>
+            <div class="phone-tile"></div>
+            <div class="phone-tile"></div>
+          </div>
+          <button class="phone-cta">$ Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S10: JERARQUÍA TIPOGRÁFICA -->
+<section class="slide bg-slate" id="s10">
+  <div class="slide-inner">
+    <h2 class="section-title">Jerarquía Tipográfica</h2>
+    <div class="grid-2">
+      <div>
+        <p class="lead-text" style="margin-bottom:24px;">No todo el texto es igual. Usamos <strong>pesos</strong> (grosor) y <strong>tamaños</strong> para estructurar la lectura.</p>
+        <ul style="list-style:none;margin-bottom:24px;">
+          <li style="font-size:var(--text-2xl);color:var(--slate-400);margin-bottom:16px;"><strong style="color:white;">H1 (Título):</strong> De qué trata la página.</li>
+          <li style="font-size:var(--text-2xl);color:var(--slate-400);margin-bottom:16px;"><strong style="color:white;">H2 (Subtítulo):</strong> Secciones importantes.</li>
+          <li style="font-size:var(--text-2xl);color:var(--slate-400);margin-bottom:16px;"><strong style="color:white;">P (Párrafo):</strong> El detalle.</li>
+        </ul>
+        <div class="card card-green-left" style="background:rgba(255,255,255,0.04);padding:24px;">
+          <p style="font-size:var(--text-xl);color:white;line-height:1.6;"><strong>Ejemplo: Spotify</strong><br>Títulos gigantes y en negrita para el nombre de la Playlist (H1), y texto pequeño y gris para la duración o descripción.</p>
+        </div>
+      </div>
+      <div class="typo-demo">
+        <p class="typo-h1">ESTO SE LEE PRIMERO</p>
+        <p class="typo-h2">Luego leerás este subtítulo</p>
+        <p class="typo-p">Y finalmente, si el título y el subtítulo te convencieron, te tomarás el tiempo de leer este párrafo más pequeño que contiene los detalles de la información.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S11: EJEMPLOS DEL MERCADO (Jerarquía) -->
+<section class="slide bg-market" id="s11">
+  <div class="slide-inner">
+    <h2 class="section-title">Ejemplos del Mercado</h2>
+    <p class="section-subtitle">Jerarquía Visual aplicada</p>
+    <div class="market-wrap">
+      <!-- Netflix -->
+      <div class="market-card" style="background:#050505;">
+        <div class="market-card-body" style="position:relative;">
+          <div style="position:absolute;top:0;left:0;width:300px;height:200px;background:radial-gradient(circle at 0% 0%, rgba(229,9,20,0.25) 0%, transparent 70%);pointer-events:none;"></div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;position:relative;">
+            <span style="color:#E50914;font-weight:900;letter-spacing:.1em;font-size:1.1rem;">NETFLIX</span>
+            <span style="color:var(--slate-400);font-size:0.85rem;">— Jerarquía por tamaño</span>
+          </div>
+          <h3 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;color:white;margin-bottom:12px;">Título de la Serie</h3>
+          <p style="font-size:var(--text-xl);color:var(--slate-300);margin-bottom:12px;">Subtítulo descriptivo</p>
+          <p style="font-size:0.95rem;color:var(--slate-500);margin-bottom:24px;">Descripción más larga del contenido...</p>
+          <div style="display:flex;gap:12px;">
+            <button style="background:white;color:black;padding:12px 24px;border:none;border-radius:4px;font-weight:700;cursor:default;font-size:0.95rem;">▶ Reproducir</button>
+            <button style="background:#333b4d;color:white;padding:12px 24px;border:none;border-radius:4px;font-weight:700;cursor:default;font-size:0.95rem;">+ Mi lista</button>
+          </div>
+        </div>
+        <div class="market-card-footer">
+          <strong>Análisis:</strong> El título es el más grande, luego el botón "Reproducir" en blanco (contraste), luego el resto.
+        </div>
+      </div>
+      <!-- Spotify -->
+      <div class="market-card" style="background:#121212;">
+        <div class="market-card-body" style="position:relative;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+            <span style="color:#1ED760;font-weight:900;font-size:1.1rem;">SPOTIFY</span>
+            <span style="color:var(--slate-400);font-size:0.85rem;">— Jerarquía por color y forma</span>
+          </div>
+          <div class="spotify-demo">
+            <div class="sp-album-row">
+              <img class="sp-album-img" src="https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=400&auto=format&fit=crop" alt="Album" referrerpolicy="no-referrer">
+              <div>
+                <p class="sp-album-title">Nombre del Álbum</p>
+                <p class="sp-artist">Nombre del Artista</p>
+              </div>
+            </div>
+            <div class="sp-controls">
+              <div class="sp-play-btn">
+                <svg viewBox="0 0 24 24" fill="black"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <span style="color:var(--slate-400);font-size:0.85rem;">La forma circular verde interrumpe el patrón y atrae la atención.</span>
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#0a0a0a;">
+          <strong>Análisis:</strong> El botón verde circular rompe el patrón visual y atrae la atención inmediatamente, a pesar de no ser el elemento más grande.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S12: REGLA DE LOS TERCIOS INTRO -->
+<section class="slide" id="s12">
+  <div class="slide-inner text-center">
+    <div style="font-size:5rem;margin-bottom:24px;">⊞</div>
+    <h2 class="section-title">2. Regla de los Tercios</h2>
+    <p class="lead-text" style="max-width:800px;margin:0 auto 40px;color:#a5f3fc;">
+      Divide tu lienzo en 9 partes iguales. Las intersecciones son los <strong style="color:white;">puntos de poder</strong>.
+    </p>
+    <div class="highlight-box" style="max-width:750px;margin:0 auto;border-color:rgba(34,211,238,0.3);">
+      <p style="font-size:var(--text-3xl);color:white;line-height:1.4;">
+        El ojo humano naturalmente va a esas intersecciones, no al centro exacto.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- S13: TERCIOS EN DISEÑO WEB -->
+<section class="slide bg-slate" id="s13">
+  <div class="slide-inner">
+    <h2 class="section-title">Tercios en Diseño Web</h2>
+    <div class="thirds-demo">
+      <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1920&auto=format&fit=crop" alt="Coffee" referrerpolicy="no-referrer">
+      <div class="overlay"></div>
+      <div class="thirds-grid-overlay">
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+      </div>
+      <!-- Power points -->
+      <div class="thirds-dot" style="top:33.33%;left:33.33%;"></div>
+      <div class="thirds-dot" style="top:66.66%;left:33.33%;animation-delay:.5s;"></div>
+      <div class="thirds-content">
+        <h3>Juan Valdez <span style="color:var(--cyan);">Café</span></h3>
+        <p>El café de todo un país, directo a tu taza.</p>
+        <button class="thirds-btn">Comprar Ahora</button>
+      </div>
+    </div>
+    <p style="font-size:var(--text-xl);color:var(--slate-400);text-align:center;margin-top:20px;">El contenido se ubica en el tercio izquierdo, alineado con los puntos de poder.</p>
+  </div>
+</section>
+
+<!-- S14: EJEMPLOS TERCIOS (Apple, NatGeo) -->
+<section class="slide bg-market" id="s14">
+  <div class="slide-inner">
+    <h2 class="section-title">Ejemplos: Regla de los Tercios</h2>
+    <div class="market-wrap">
+      <!-- Apple -->
+      <div class="market-card" style="background:#000;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:white;font-weight:900;font-size:1.1rem;">APPLE</span>
+            <span style="color:var(--slate-400);font-size:0.85rem;">— Producto en intersección</span>
+          </div>
+          <div style="position:relative;height:180px;overflow:hidden;border-radius:12px;background:#000;">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1926&auto=format&fit=crop" alt="MacBook" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:65%;height:120%;object-fit:cover;object-position:left;opacity:0.85;" referrerpolicy="no-referrer">
+            <!-- Grid overlay subtle -->
+            <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;opacity:0.25;pointer-events:none;">
+              <div style="border:1px solid white;"></div><div style="border:1px solid white;"></div><div style="border:1px solid white;"></div>
+              <div style="border:1px solid white;"></div><div style="border:1px solid white;"></div><div style="border:1px solid white;"></div>
+              <div style="border:1px solid white;"></div><div style="border:1px solid white;"></div><div></div>
+            </div>
+            <div style="position:absolute;left:0;top:0;bottom:0;width:35%;padding:16px;display:flex;flex-direction:column;justify-content:center;z-index:2;">
+              <h3 style="font-size:1.2rem;font-weight:700;color:white;margin-bottom:6px;">MacBook Pro</h3>
+              <p style="font-size:0.8rem;color:var(--slate-300);margin-bottom:12px;">Potencia desatada.</p>
+              <button style="background:white;color:black;padding:6px 16px;border-radius:999px;border:none;font-weight:700;font-size:0.8rem;cursor:default;width:max-content;">Comprar</button>
+            </div>
+            <!-- Highlight point -->
+            <div style="position:absolute;left:33.33%;top:50%;width:20px;height:20px;background:var(--rose);border-radius:50%;transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 15px rgba(244,63,94,0.6);animation:pulse-dot 2s infinite;"></div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#111;">
+          <strong>Análisis:</strong> El texto ocupa el primer tercio, mientras que el producto principal se alinea perfectamente con la línea vertical derecha y el punto de intersección central.
+        </div>
+      </div>
+      <!-- NatGeo -->
+      <div class="market-card" style="background:#1a1a1a;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#FFCC00;font-weight:900;font-size:1.1rem;">NAT GEO</span>
+            <span style="color:var(--slate-400);font-size:0.85rem;">— Punto focal dramático</span>
+          </div>
+          <div style="position:relative;height:180px;border-radius:12px;overflow:hidden;background:var(--slate-800);">
+            <img src="https://images.unsplash.com/photo-1503756234508-e32369269deb?q=80&w=2000&auto=format&fit=crop" alt="Ocean" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:33% 70%;" referrerpolicy="no-referrer">
+            <!-- Grid overlay visible -->
+            <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;pointer-events:none;">
+              <div style="border:1px solid rgba(34,211,238,0.7);"></div><div style="border:1px solid rgba(34,211,238,0.7);"></div><div style="border:1px solid rgba(34,211,238,0.7);"></div>
+              <div style="border:1px solid rgba(34,211,238,0.7);"></div><div style="border:1px solid rgba(34,211,238,0.7);"></div><div style="border:1px solid rgba(34,211,238,0.7);"></div>
+              <div style="border:1px solid rgba(34,211,238,0.7);"></div><div style="border:1px solid rgba(34,211,238,0.7);"></div><div></div>
+            </div>
+            <div style="position:absolute;left:33.33%;top:66.66%;width:20px;height:20px;background:var(--cyan);border-radius:50%;transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 15px rgba(34,211,238,0.8);animation:pulse-dot 2s infinite .3s;"></div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#0a0f1a;">
+          <strong>Composición:</strong> El rompiente de las olas se alinea con la intersección inferior izquierda, guiando la mirada a través de la textura del agua hacia el horizonte.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S15: SISTEMA DE RETÍCULA INTRO -->
+<section class="slide" id="s15">
+  <div class="slide-inner text-center">
+    <div style="font-size:5rem;margin-bottom:24px;">⫸</div>
+    <h2 class="section-title">3. El Sistema de Retícula</h2>
+    <p class="lead-text" style="max-width:800px;margin:0 auto 32px;color:#c4b5fd;">
+      El estándar de la industria web es el <strong style="color:white;">Grid de 12 Columnas</strong>.
+    </p>
+    <div class="highlight-box" style="max-width:800px;margin:0 auto 24px;border-color:rgba(139,63,212,0.3);">
+      <p style="font-size:var(--text-3xl);color:white;line-height:1.4;">
+        ¿Por qué 12? Porque es altamente divisible. Puedes crear layouts de 1, 2, 3, 4 o 6 columnas perfectamente simétricas.
+      </p>
+    </div>
+    <div class="card card-amber" style="background:rgba(255,255,255,0.04);padding:24px;max-width:800px;margin:0 auto;text-align:left;">
+      <p style="font-size:var(--text-xl);color:white;line-height:1.5;">
+        <strong>Ejemplo: Mercado Libre</strong><br>
+        Usa un grid estricto para mostrar miles de productos en tarjetas perfectamente alineadas sin que se vea desordenado.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- S16: ANATOMÍA DEL GRID -->
+<section class="slide bg-slate" id="s16">
+  <div class="slide-inner">
+    <h2 class="section-title">Anatomía del Grid</h2>
+    <div class="grid-anatomy">
+      <div class="grid-cols">
+        <div class="margin-l"><span>MARGEN</span></div>
+        <div class="grid-col">1</div><div class="grid-col">2</div><div class="grid-col">3</div>
+        <div class="grid-col">4</div><div class="grid-col">5</div><div class="grid-col">6</div>
+        <div class="grid-col">7</div><div class="grid-col">8</div><div class="grid-col">9</div>
+        <div class="grid-col">10</div><div class="grid-col">11</div><div class="grid-col">12</div>
+        <div class="margin-r"><span>MARGEN</span></div>
+      </div>
+      <div class="grid-legend">
+        <div class="grid-legend-item">
+          <h4 style="color:#818cf8;">Columnas</h4>
+          <p>Donde va el contenido (texto, imágenes).</p>
+        </div>
+        <div class="grid-legend-item">
+          <h4 style="color:var(--cyan);">Calles (Gutters)</h4>
+          <p>El espacio vacío entre columnas para que respiren.</p>
+        </div>
+        <div class="grid-legend-item">
+          <h4 style="color:var(--rose);">Márgenes</h4>
+          <p>El espacio exterior que enmarca todo el diseño.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S17: EJEMPLOS RETÍCULA (Pinterest, Airbnb) -->
+<section class="slide bg-market" id="s17">
+  <div class="slide-inner">
+    <h2 class="section-title">Ejemplos: Sistema de Retícula</h2>
+    <div class="market-wrap">
+      <!-- Pinterest -->
+      <div class="market-card" style="background:#fff;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#E60023;font-weight:900;font-size:1.1rem;">PINTEREST</span>
+            <span style="color:var(--slate-500);font-size:0.85rem;">— Retícula Masonry</span>
+          </div>
+          <div style="display:flex;gap:12px;height:200px;">
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400&auto=format&fit=crop" style="width:100%;height:70px;object-fit:cover;border-radius:8px;" alt="f" referrerpolicy="no-referrer">
+              <div style="position:relative;flex:1;border-radius:8px;overflow:hidden;border:2px solid var(--rose);">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;" alt="i" referrerpolicy="no-referrer">
+              </div>
+              <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=400&auto=format&fit=crop" style="width:100%;height:50px;object-fit:cover;border-radius:8px;" alt="f" referrerpolicy="no-referrer">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
+              <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=400&auto=format&fit=crop" style="width:100%;height:90px;object-fit:cover;border-radius:8px;" alt="n" referrerpolicy="no-referrer">
+              <div style="position:relative;height:50px;border-radius:8px;overflow:hidden;border:2px solid var(--rose);">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=400&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;" alt="f" referrerpolicy="no-referrer">
+              </div>
+              <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=400&auto=format&fit=crop" style="width:100%;flex:1;object-fit:cover;border-radius:8px;min-height:50px;" alt="i" referrerpolicy="no-referrer">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
+              <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=400&auto=format&fit=crop" style="width:100%;height:50px;object-fit:cover;border-radius:8px;" alt="f" referrerpolicy="no-referrer">
+              <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=400&auto=format&fit=crop" style="width:100%;height:90px;object-fit:cover;border-radius:8px;" alt="n" referrerpolicy="no-referrer">
+              <div style="position:relative;flex:1;border-radius:8px;overflow:hidden;border:2px solid var(--rose);min-height:50px;">
+                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=400&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;" alt="i" referrerpolicy="no-referrer">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#f8f9fa;color:#374151;">
+          <strong style="color:#111;">Análisis:</strong> Columnas de ancho fijo pero altura variable (Masonry). Permite mostrar contenido diverso sin desperdiciar espacio vertical.
+        </div>
+      </div>
+      <!-- Airbnb -->
+      <div class="market-card" style="background:#fff;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#FF5A5F;font-weight:900;font-size:1.1rem;">AIRBNB</span>
+            <span style="color:var(--slate-500);font-size:0.85rem;">— Retícula de Tarjetas (Grid)</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="display:flex;flex-direction:column;gap:6px;position:relative;">
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=400&auto=format&fit=crop" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;" alt="h" referrerpolicy="no-referrer">
+              <div style="width:75%;height:12px;background:#e2e8f0;border-radius:4px;"></div>
+              <div style="width:50%;height:10px;background:#f1f5f9;border-radius:4px;"></div>
+              <div style="position:absolute;inset:-8px;border:2px solid var(--rose);border-radius:14px;pointer-events:none;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=400&auto=format&fit=crop" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;" alt="h" referrerpolicy="no-referrer">
+              <div style="width:100%;height:12px;background:#e2e8f0;border-radius:4px;"></div>
+              <div style="width:66%;height:10px;background:#f1f5f9;border-radius:4px;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=400&auto=format&fit=crop" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;" alt="h" referrerpolicy="no-referrer">
+              <div style="width:80%;height:12px;background:#e2e8f0;border-radius:4px;"></div>
+              <div style="width:33%;height:10px;background:#f1f5f9;border-radius:4px;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=400&auto=format&fit=crop" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;" alt="h" referrerpolicy="no-referrer">
+              <div style="width:75%;height:12px;background:#e2e8f0;border-radius:4px;"></div>
+              <div style="width:50%;height:10px;background:#f1f5f9;border-radius:4px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#f8f9fa;color:#374151;">
+          <strong style="color:#111;">Análisis:</strong> Retícula estricta donde cada tarjeta tiene el mismo tamaño y proporción. Crea un ritmo visual predecible y fácil de escanear para comparar opciones.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S18: ESPACIO NEGATIVO INTRO -->
+<section class="slide" id="s18">
+  <div class="slide-inner text-center">
+    <div style="font-size:5rem;margin-bottom:24px;">💨</div>
+    <h2 class="section-title">4. Espacio Negativo</h2>
+    <p class="lead-text" style="max-width:800px;margin:0 auto 40px;">
+      El espacio vacío <strong style="color:var(--emerald);">NO</strong> es un error. Es el oxígeno de tu diseño.
+    </p>
+    <div class="quote-box" style="max-width:750px;margin:0 auto 28px;">
+      <p style="font-size:var(--text-3xl);">Sin espacio negativo, el diseño se siente asfixiante, barato y confuso. El espacio da elegancia y claridad.</p>
+    </div>
+    <div class="card card-emerald-left" style="background:rgba(255,255,255,0.04);padding:24px;max-width:750px;margin:0 auto;text-align:left;">
+      <p style="font-size:var(--text-xl);color:white;line-height:1.5;">
+        <strong>Ejemplo: Apple y Nubank</strong><br>
+        Su elegancia y sensación "Premium" viene de lo que NO ponen en la pantalla. Mucho espacio en blanco alrededor de sus productos.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- S19: MACRO VS MICRO ESPACIO -->
+<section class="slide bg-slate" id="s19">
+  <div class="slide-inner">
+    <h2 class="section-title">Macro vs Micro Espacio</h2>
+    <div class="neg-space-demo">
+      <div class="macro-box">
+        <h3>Macro Espacio</h3>
+        <p style="font-size:var(--text-xl);color:var(--slate-300);margin-bottom:16px;">El espacio grande entre secciones completas de una página.</p>
+        <div class="macro-visual">
+          <div class="macro-block"></div>
+          <div class="macro-space"><span>MACRO ESPACIO</span></div>
+          <div class="macro-block"></div>
+        </div>
+      </div>
+      <div class="micro-box">
+        <h3>Micro Espacio</h3>
+        <p style="font-size:var(--text-xl);color:var(--slate-300);margin-bottom:16px;">El espacio pequeño entre textos, botones o dentro de una tarjeta.</p>
+        <div class="micro-visual">
+          <div class="micro-line" style="width:75%;"></div>
+          <div class="micro-gap"><span>MICRO</span></div>
+          <div class="micro-line" style="width:50%;"></div>
+          <button class="micro-btn">Botón (con padding)</button>
+        </div>
+      </div>
+    </div>
+    <div class="card card-emerald-left" style="background:rgba(255,255,255,0.04);padding:24px;margin-top:32px;">
+      <p style="font-size:var(--text-xl);color:white;line-height:1.6;">
+        <strong>Ejemplo: Google (Buscador)</strong><br>
+        El <strong>Macro Espacio</strong> es todo el inmenso fondo blanco que rodea el logo y la barra de búsqueda. El <strong>Micro Espacio</strong> es el padding interno de la barra de búsqueda y la separación entre los botones "Buscar con Google" y "Me siento con suerte".
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- S20: EJEMPLOS ESPACIO NEGATIVO (Google, Chanel) -->
+<section class="slide bg-market" id="s20">
+  <div class="slide-inner">
+    <h2 class="section-title">Ejemplos: Espacio Negativo</h2>
+    <div class="market-wrap">
+      <!-- Google -->
+      <div class="market-card" style="background:#fff;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#4285F4;font-weight:900;font-size:1.1rem;">GOOGLE</span>
+            <span style="color:var(--slate-500);font-size:0.85rem;">— Espacio Macro Extremo</span>
+          </div>
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:32px;display:flex;flex-direction:column;align-items:center;gap:20px;min-height:200px;justify-content:center;">
+            <div style="display:flex;gap:2px;">
+              <span style="font-size:2.2rem;font-weight:700;color:#4285F4;">G</span>
+              <span style="font-size:2.2rem;font-weight:700;color:#EA4335;">o</span>
+              <span style="font-size:2.2rem;font-weight:700;color:#FBBC05;">o</span>
+              <span style="font-size:2.2rem;font-weight:700;color:#4285F4;">g</span>
+              <span style="font-size:2.2rem;font-weight:700;color:#34A853;">l</span>
+              <span style="font-size:2.2rem;font-weight:700;color:#EA4335;">e</span>
+            </div>
+            <div style="width:75%;max-width:300px;height:44px;border-radius:999px;border:1px solid #dfe1e5;display:flex;align-items:center;padding:0 16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);outline:2px solid rgba(244,63,94,0.3);">
+              <div style="width:16px;height:16px;border-radius:50%;border:2px solid #9ca3af;"></div>
+            </div>
+            <div style="display:flex;gap:12px;">
+              <div style="padding:8px 16px;background:#f8f9fa;border-radius:4px;font-size:0.85rem;color:#374151;">Buscar con Google</div>
+              <div style="padding:8px 16px;background:#f8f9fa;border-radius:4px;font-size:0.85rem;color:#374151;">Me siento con suerte</div>
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#f8f9fa;color:#374151;">
+          <strong style="color:#111;">Análisis:</strong> El 90% de la pantalla es espacio en blanco. Esto elimina distracciones y obliga al usuario a centrarse en la única acción importante: buscar.
+        </div>
+      </div>
+      <!-- Chanel -->
+      <div class="market-card" style="background:#000;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:white;font-family:serif;letter-spacing:.2em;font-size:1.1rem;">CHANEL</span>
+            <span style="color:var(--slate-400);font-size:0.85rem;">— Espacio como Lujo</span>
+          </div>
+          <div style="background:#000;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:32px;display:flex;flex-direction:column;align-items:center;gap:20px;min-height:200px;justify-content:center;">
+            <div style="width:90px;height:110px;border-radius:8px;overflow:hidden;box-shadow:0 0 40px rgba(251,191,36,0.15);">
+              <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=400&auto=format&fit=crop" alt="Perfume" style="width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer">
+            </div>
+            <h3 style="color:white;font-family:serif;letter-spacing:.3em;font-size:1.2rem;">N°5</h3>
+            <p style="color:var(--slate-400);font-size:0.7rem;letter-spacing:.2em;text-transform:uppercase;">L'Eau de Parfum</p>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#111;">
+          <strong>Análisis:</strong> Las marcas de lujo usan abundante espacio negativo. El espacio vacío transmite exclusividad, elegancia y alto valor.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S21: FLUJO VISUAL PATRÓN Z -->
+<section class="slide bg-slate" id="s21">
+  <div class="slide-inner">
+    <h2 class="section-title">5. Flujo Visual: Patrón Z</h2>
+    <p class="section-subtitle">Ideal para Landing Pages con poco texto y un objetivo claro.</p>
+    <div class="card card-red-left" style="background:rgba(255,255,255,0.04);padding:24px;margin-bottom:32px;">
+      <p style="font-size:var(--text-xl);color:white;line-height:1.6;">
+        <strong>Ejemplo: Netflix (Página de inicio)</strong><br>
+        Tu ojo hace una Z: Logo (arriba izq) ➔ Iniciar Sesión (arriba der) ➔ Propuesta de valor en el centro ➔ Input de Email ➔ Botón rojo gigante.
+      </p>
+    </div>
+    <div class="flow-demo">
+      <div class="flow-nav">
+        <div class="flow-logo"></div>
+        <div class="flow-nav-links">
+          <div class="flow-nav-link"></div>
+          <div class="flow-nav-link"></div>
+          <div class="flow-nav-cta"></div>
+        </div>
+      </div>
+      <div class="flow-hero"><div class="flow-hero-box">Imagen Principal / Video</div></div>
+      <div class="flow-footer">
+        <div class="flow-text">
+          <div class="flow-text-line" style="width:100%;"></div>
+          <div class="flow-text-line" style="width:75%;"></div>
+        </div>
+        <div class="flow-cta-btn">Suscribirse</div>
+      </div>
+      <!-- Z path SVG -->
+      <svg class="flow-z-path" viewBox="0 0 600 300" preserveAspectRatio="none">
+        <path d="M60,45 L540,45 L60,255 L540,255" fill="none" stroke="rgba(52,211,153,0.6)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2000" stroke-dashoffset="2000" id="z-path"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- S22: FLUJO VISUAL PATRÓN F -->
+<section class="slide bg-slate" id="s22">
+  <div class="slide-inner">
+    <h2 class="section-title">Flujo Visual: Patrón F</h2>
+    <p class="section-subtitle">Cómo leemos cuando hay mucho texto (Blogs, Noticias, Resultados de Google).</p>
+    <div class="card card-blue-left" style="background:rgba(255,255,255,0.04);padding:24px;margin-bottom:32px;">
+      <p style="font-size:var(--text-xl);color:white;line-height:1.6;">
+        <strong>Ejemplo: El Tiempo o Twitter (X)</strong><br>
+        Escaneamos el titular principal de izquierda a derecha, bajamos un poco, leemos el siguiente subtítulo, y seguimos bajando por el borde izquierdo.
+      </p>
+    </div>
+    <div class="flow-demo">
+      <div style="space-y:16px;position:relative;">
+        <div style="height:40px;background:var(--slate-400);border-radius:6px;margin-bottom:40px;"></div>
+        <div style="height:20px;background:var(--slate-500);border-radius:4px;width:75%;margin-bottom:12px;"></div>
+        <div style="height:14px;background:var(--slate-600);border-radius:4px;width:100%;margin-bottom:8px;"></div>
+        <div style="height:14px;background:var(--slate-600);border-radius:4px;width:83%;margin-bottom:32px;"></div>
+        <div style="height:24px;background:var(--slate-500);border-radius:4px;width:50%;margin-bottom:12px;"></div>
+        <div style="height:14px;background:var(--slate-600);border-radius:4px;width:100%;margin-bottom:8px;"></div>
+        <div style="height:14px;background:var(--slate-600);border-radius:4px;width:80%;margin-bottom:32px;"></div>
+        <div style="height:24px;background:var(--slate-500);border-radius:4px;width:33%;margin-bottom:12px;"></div>
+        <div style="height:14px;background:var(--slate-600);border-radius:4px;width:67%;margin-bottom:8px;"></div>
+      </div>
+      <svg class="flow-z-path" viewBox="0 0 600 350" preserveAspectRatio="none">
+        <path d="M30,35 L570,35 M30,35 L30,340 M30,135 L360,135 M30,250 L180,250" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2000" stroke-dashoffset="2000" id="f-path"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- S23: LÍNEAS GUÍA (Leading Lines) -->
+<section class="slide bg-slate" id="s23">
+  <div class="slide-inner">
+    <h2 class="section-title">Líneas Guía (Leading Lines)</h2>
+    <p class="section-subtitle">Usa elementos visuales para apuntar literalmente a lo que quieres que el usuario vea.</p>
+    <div class="leading-lines-grid">
+      <div class="ll-card">
+        <h3>La Mirada</h3>
+        <div class="ll-demo">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" alt="Person looking" referrerpolicy="no-referrer">
+          <div class="ll-cta">
+            <h4>Mira esto</h4>
+            <button>Comprar</button>
+          </div>
+          <svg style="position:absolute;top:50%;left:33%;width:120px;height:28px;color:var(--rose);filter:drop-shadow(0 0 6px currentColor);" viewBox="0 0 100 20">
+            <path d="M0,10 L90,10 M80,0 L95,10 L80,20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p style="font-size:var(--text-xl);color:var(--slate-400);margin-top:12px;">Cuando una persona mira hacia algo en una imagen, tus ojos la siguen automáticamente.</p>
+      </div>
+      <div class="ll-card">
+        <h3>Formas y Perspectiva</h3>
+        <div class="ll-shapes">
+          <div class="ll-shape-tl"></div>
+          <div class="ll-shape-br"></div>
+          <button class="ll-center-btn">CTA Principal</button>
+        </div>
+        <p style="font-size:var(--text-xl);color:var(--slate-400);margin-top:12px;">Las formas y curvas convergen hacia el elemento central, creando un punto focal natural.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S24: EJEMPLOS PATRONES DE LECTURA (Twitter F, Slack Z) -->
+<section class="slide bg-market" id="s24">
+  <div class="slide-inner">
+    <h2 class="section-title">Ejemplos: Patrones de Lectura</h2>
+    <div class="market-wrap">
+      <!-- Twitter F -->
+      <div class="market-card" style="background:#fff;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#1DA1F2;font-weight:900;font-size:1.1rem;">TWITTER / X</span>
+            <span style="color:var(--slate-500);font-size:0.85rem;">— Patrón en F</span>
+          </div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px;min-height:180px;display:flex;gap:16px;overflow:hidden;position:relative;">
+            <!-- F pattern overlay -->
+            <div style="position:absolute;inset:0;z-index:10;pointer-events:none;display:flex;flex-direction:column;">
+              <div style="width:100%;height:32px;background:rgba(244,63,94,0.15);border-bottom:2px solid rgba(244,63,94,0.5);"></div>
+              <div style="width:32px;height:40px;background:rgba(244,63,94,0.1);border-right:2px solid rgba(244,63,94,0.4);"></div>
+              <div style="width:75%;height:28px;background:rgba(244,63,94,0.1);border-bottom:2px solid rgba(244,63,94,0.4);border-right:2px solid rgba(244,63,94,0.4);"></div>
+              <div style="width:32px;flex:1;background:rgba(244,63,94,0.08);border-right:2px solid rgba(244,63,94,0.3);"></div>
+            </div>
+            <div style="width:25%;display:flex;flex-direction:column;gap:12px;border-right:1px solid #e2e8f0;padding-right:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#e2e8f0;overflow:hidden;"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;" alt="p" referrerpolicy="no-referrer"></div>
+              <div style="height:10px;background:#e2e8f0;border-radius:4px;"></div>
+              <div style="height:10px;background:#e2e8f0;border-radius:4px;"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:16px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0;"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;" alt="u" referrerpolicy="no-referrer"></div>
+                <div>
+                  <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;">
+                    <span style="font-weight:700;color:#0f172a;font-size:0.8rem;">Sarah Jenkins</span>
+                    <span style="color:#94a3b8;font-size:0.7rem;">@sarahj_design · 2h</span>
+                  </div>
+                  <p style="color:#334155;font-size:0.75rem;line-height:1.4;">Just launched our new design system! 🚀 So incredibly proud of the team for pulling this off.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#f8f9fa;color:#374151;">
+          <strong style="color:#111;">Análisis:</strong> En feeds densos, el ojo escanea de izquierda a derecha en la parte superior, baja y escanea menos a la derecha, luego baja por el borde izquierdo (Patrón F).
+        </div>
+      </div>
+      <!-- Slack/SaaS Z -->
+      <div class="market-card" style="background:#0f172a;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#38bdf8;font-weight:900;font-size:1.1rem;">SLACK / SAAS</span>
+            <span style="color:var(--slate-400);font-size:0.85rem;">— Patrón en Z</span>
+          </div>
+          <div style="background:var(--slate-900);border:1px solid var(--slate-800);border-radius:12px;padding:24px;min-height:180px;position:relative;">
+            <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none;" preserveAspectRatio="none">
+              <path d="M24 40 L376 40 L24 160 L376 160" fill="none" stroke="rgba(244,63,94,0.5)" stroke-width="3" stroke-dasharray="6 4"/>
+              <circle cx="24" cy="40" r="5" fill="#f43f5e"/>
+              <circle cx="376" cy="40" r="5" fill="#f43f5e"/>
+              <circle cx="24" cy="160" r="5" fill="#f43f5e"/>
+              <circle cx="376" cy="160" r="5" fill="#f43f5e"/>
+            </svg>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
+              <div style="color:white;font-weight:700;font-size:1rem;display:flex;gap:8px;align-items:center;">
+                <div style="width:20px;height:20px;background:#38bdf8;border-radius:4px;"></div>
+                Nexus
+              </div>
+              <button style="background:#38bdf8;color:var(--slate-900);padding:8px 16px;border:none;border-radius:999px;font-weight:700;font-size:0.8rem;cursor:default;">Try for free</button>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;">
+              <div style="flex:1;">
+                <h1 style="font-size:1.3rem;font-weight:700;color:white;line-height:1.2;margin-bottom:8px;">Bring your team's work together.</h1>
+                <p style="font-size:0.75rem;color:var(--slate-400);margin-bottom:12px;">Nexus is the collaboration hub that brings the right people, information, and tools together.</p>
+                <button style="background:#38bdf8;color:var(--slate-900);padding:10px 20px;border:none;border-radius:8px;font-weight:700;font-size:0.8rem;cursor:default;">Get Started</button>
+              </div>
+              <div style="width:120px;height:80px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;" alt="d" referrerpolicy="no-referrer">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#0b1120;border-top:1px solid var(--slate-800);">
+          <strong>Análisis:</strong> En páginas con menos texto (Landing Pages), el ojo va del Logo (1) al Login (2), baja en diagonal al Título (3) y termina en el Botón de Acción (4).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S25: DISEÑO RESPONSIVO INTRO -->
+<section class="slide" id="s25">
+  <div class="slide-inner text-center">
+    <h2 class="section-title">6. Diseño Responsivo</h2>
+    <p class="lead-text" style="max-width:800px;margin:0 auto 32px;color:#c4b5fd;">Tu diseño no es estático. Es líquido. Debe adaptarse a la pantalla del usuario.</p>
+    <div class="card card-green-left" style="background:rgba(255,255,255,0.04);padding:24px;max-width:800px;margin:0 auto 40px;text-align:left;">
+      <p style="font-size:var(--text-xl);color:white;line-height:1.5;">
+        <strong>Ejemplo: Spotify</strong><br>
+        En PC tienes una barra lateral, el contenido en el centro y el reproductor a la derecha. En celular, todo se apila y el reproductor se convierte en una pequeña barra inferior.
+      </p>
+    </div>
+    <div class="responsive-demos">
+      <div class="resp-device">
+        <div class="resp-screen desktop">
+          <div class="resp-col"></div><div class="resp-col"></div><div class="resp-col"></div>
+          <div class="resp-col"></div><div class="resp-col"></div><div class="resp-col"></div>
+          <div class="resp-col"></div><div class="resp-col"></div><div class="resp-col"></div>
+          <div class="resp-col"></div><div class="resp-col"></div><div class="resp-col"></div>
+        </div>
+        <div class="resp-icon">🖥️</div>
+        <div class="resp-label">Computador</div>
+        <div class="resp-sub">12 Columnas</div>
+      </div>
+      <div class="resp-device">
+        <div class="resp-screen tablet">
+          <div class="resp-col"></div><div class="resp-col"></div><div class="resp-col"></div>
+          <div class="resp-col"></div><div class="resp-col"></div><div class="resp-col"></div>
+          <div class="resp-col"></div><div class="resp-col"></div>
+        </div>
+        <div class="resp-icon">📱</div>
+        <div class="resp-label">Tablet</div>
+        <div class="resp-sub">8 Columnas</div>
+      </div>
+      <div class="resp-device">
+        <div class="resp-screen mobile">
+          <div class="resp-col"></div><div class="resp-col"></div>
+          <div class="resp-col"></div><div class="resp-col"></div>
+        </div>
+        <div class="resp-icon">📲</div>
+        <div class="resp-label">Celular</div>
+        <div class="resp-sub">4 Columnas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S26: APILAMIENTO (STACKING) -->
+<section class="slide bg-slate" id="s26">
+  <div class="slide-inner">
+    <h2 class="section-title">Apilamiento (Stacking)</h2>
+    <p class="section-subtitle">¿Qué pasa con las 12 columnas cuando pasamos a celular? Se apilan verticalmente.</p>
+    <div class="stacking-demo-grid">
+      <div class="stacking-box">
+        <h3>Desktop (Horizontal)</h3>
+        <div class="desktop-row">
+          <div class="b1">1</div>
+          <div class="b2">2</div>
+          <div class="b3">3</div>
+        </div>
+      </div>
+      <div class="stacking-box">
+        <h3>Mobile (Vertical)</h3>
+        <div class="mobile-col">
+          <div class="b1">1</div>
+          <div class="b2">2</div>
+          <div class="b3">3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S27: EJEMPLOS RESPONSIVO (Stripe, YouTube) -->
+<section class="slide bg-market" id="s27">
+  <div class="slide-inner">
+    <h2 class="section-title">Ejemplos: Diseño Responsivo</h2>
+    <div class="market-wrap">
+      <!-- Stripe -->
+      <div class="market-card" style="background:#fff;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#635BFF;font-weight:900;font-size:1.1rem;">STRIPE</span>
+            <span style="color:var(--slate-500);font-size:0.85rem;">— Desktop a Mobile</span>
+          </div>
+          <div style="display:flex;gap:20px;align-items:flex-end;justify-content:center;min-height:160px;">
+            <!-- Desktop mockup -->
+            <div style="width:200px;height:140px;background:#f8fafc;border-radius:8px 8px 0 0;border:1px solid #e2e8f0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+              <div style="height:12px;background:#e2e8f0;display:flex;align-items:center;padding:0 6px;gap:4px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:#f87171;"></div>
+                <div style="width:6px;height:6px;border-radius:50%;background:#fbbf24;"></div>
+                <div style="width:6px;height:6px;border-radius:50%;background:#34d399;"></div>
+              </div>
+              <div style="flex:1;padding:12px;display:flex;gap:8px;">
+                <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+                  <div style="height:10px;width:75%;background:#1e293b;border-radius:3px;"></div>
+                  <div style="height:6px;width:100%;background:#94a3b8;border-radius:2px;"></div>
+                  <div style="height:6px;width:83%;background:#94a3b8;border-radius:2px;"></div>
+                  <div style="height:12px;width:50px;background:#635BFF;border-radius:4px;margin-top:4px;"></div>
+                </div>
+                <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:80%;height:60px;background:#cbd5e1;border-radius:6px;transform:rotate(8deg);box-shadow:0 2px 8px rgba(0,0,0,0.15);"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Mobile mockup -->
+            <div style="width:70px;height:115px;background:#f8fafc;border-radius:8px 8px 0 0;border:1px solid #9ca3af;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 24px rgba(0,0,0,0.2);z-index:2;margin-left:-24px;">
+              <div style="height:10px;background:#1e293b;display:flex;justify-content:center;align-items:center;">
+                <div style="width:20px;height:3px;background:#475569;border-radius:999px;"></div>
+              </div>
+              <div style="flex:1;padding:8px;display:flex;flex-direction:column;gap:6px;">
+                <div style="height:10px;width:100%;background:#1e293b;border-radius:2px;"></div>
+                <div style="height:6px;width:100%;background:#94a3b8;border-radius:2px;"></div>
+                <div style="height:6px;width:83%;background:#94a3b8;border-radius:2px;"></div>
+                <div style="height:12px;width:100%;background:#635BFF;border-radius:4px;"></div>
+                <div style="height:36px;width:100%;background:#e2e8f0;border-radius:4px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#f8f9fa;color:#374151;">
+          <strong style="color:#111;">Análisis:</strong> El diseño de dos columnas en escritorio se apila verticalmente en móvil. La imagen se ubica debajo del texto para aprovechar el ancho disponible.
+        </div>
+      </div>
+      <!-- YouTube -->
+      <div class="market-card" style="background:#0f0f0f;">
+        <div class="market-card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <span style="color:#FF0000;font-weight:900;font-size:1.1rem;">YOUTUBE</span>
+            <span style="color:var(--slate-400);font-size:0.85rem;">— Grid a Columna Única</span>
+          </div>
+          <div style="display:flex;gap:20px;align-items:flex-end;justify-content:center;min-height:160px;">
+            <!-- Desktop grid -->
+            <div style="width:200px;height:140px;background:#212121;border-radius:8px 8px 0 0;border:1px solid #444;overflow:hidden;padding:8px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+              <div style="display:flex;gap:6px;">
+                <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=200&auto=format&fit=crop" style="width:33%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;" alt="t" referrerpolicy="no-referrer">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=200&auto=format&fit=crop" style="width:33%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;" alt="t" referrerpolicy="no-referrer">
+                <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=200&auto=format&fit=crop" style="width:33%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;" alt="t" referrerpolicy="no-referrer">
+              </div>
+              <div style="display:flex;gap:6px;">
+                <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=200&auto=format&fit=crop" style="width:33%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;" alt="t" referrerpolicy="no-referrer">
+                <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=200&auto=format&fit=crop" style="width:33%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;" alt="t" referrerpolicy="no-referrer">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=200&auto=format&fit=crop" style="width:33%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;" alt="t" referrerpolicy="no-referrer">
+              </div>
+            </div>
+            <!-- Mobile single col -->
+            <div style="width:70px;height:115px;background:#0f0f0f;border-radius:8px 8px 0 0;border:1px solid #444;overflow:hidden;padding:6px;display:flex;flex-direction:column;gap:6px;box-shadow:0 4px 24px rgba(0,0,0,0.6);z-index:2;margin-left:-24px;">
+              <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=400&auto=format&fit=crop" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;" alt="t" referrerpolicy="no-referrer">
+              <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=400&auto=format&fit=crop" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;" alt="t" referrerpolicy="no-referrer">
+              <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=400&auto=format&fit=crop" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;" alt="t" referrerpolicy="no-referrer">
+            </div>
+          </div>
+        </div>
+        <div class="market-card-footer" style="background:#1a1a1a;">
+          <strong>Análisis:</strong> Una cuadrícula de 3 o 4 columnas en escritorio se transforma en una sola columna en móviles, maximizando el tamaño de cada miniatura para que sea legible.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S28: ELIGE TU PIEZA ROTA -->
+<section class="slide" id="s28">
+  <div class="slide-inner">
+    <h2 class="section-title text-center">Elige tu "Pieza Rota"</h2>
+    <p class="section-subtitle text-center">Estas son las 7 piezas que necesitan cirugía urgente. Elige una para la actividad.</p>
+    <div class="broken-pieces-grid">
+      <!-- 1. Flyer -->
+      <div class="broken-piece piece-1">
+        <div class="piece-inner">
+          <img class="p1-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Burger" referrerpolicy="no-referrer">
+          <span class="p1-title">HAMBURGUESAS!!</span>
+          <span class="p1-badge">2x1 HOY</span>
+          <span class="p1-tel">Domicilios: 555-5555</span>
+        </div>
+        <div class="piece-label">1. Flyer Redes</div>
+      </div>
+      <!-- 2. App Moda -->
+      <div class="broken-piece piece-2">
+        <div class="piece-inner" style="display:flex;flex-direction:column;">
+          <div class="p2-title">NUEVA COLECCIÓN</div>
+          <img class="p2-img" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400" alt="Fashion" referrerpolicy="no-referrer">
+          <div class="p2-btn">COMPRAR</div>
+          <div class="p2-terms">Términos y condiciones aplican. Válido hasta agotar existencias.</div>
+        </div>
+        <div class="piece-label">2. App de Moda</div>
+      </div>
+      <!-- 3. Miniatura YT -->
+      <div class="broken-piece piece-3">
+        <div class="piece-inner">
+          <img class="p3-img" src="https://images.unsplash.com/photo-1516245834210-c4c142787335?w=400" alt="Crypto" referrerpolicy="no-referrer">
+          <div class="p3-title">CÓMO HACERSE RICO EN 2026</div>
+          <div class="p3-secret">¡¡SECRETO!!</div>
+          <div class="p3-mira">MIRA ESTO</div>
+        </div>
+        <div class="piece-label">3. Miniatura YT</div>
+      </div>
+      <!-- 4. PPT -->
+      <div class="broken-piece piece-4">
+        <div class="piece-inner">
+          <div class="p4-title">LA HISTORIA DE LA WEB</div>
+          <div class="p4-text">La World Wide Web (WWW) o red informática mundial es un sistema de distribución de documentos de hipertexto o hipermedios interconectados y accesibles a través de Internet. Con un navegador web, un usuario visualiza sitios web compuestos de páginas web que pueden contener textos, imágenes, vídeos u otros contenidos multimedia, y navega a través de esas páginas usando hiperenlaces. Fue creada en 1989 por Tim Berners-Lee y Robert Cailliau mientras trabajaban en el CERN en Ginebra, Suiza.</div>
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" style="position:absolute;bottom:8px;right:8px;width:60px;height:60px;object-fit:cover;" alt="Web" referrerpolicy="no-referrer">
+        </div>
+        <div class="piece-label">4. Diapositiva PPT</div>
+      </div>
+      <!-- 5. E-commerce -->
+      <div class="broken-piece piece-5">
+        <div class="piece-inner" style="display:flex;flex-direction:column;">
+          <img class="p5-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" alt="Headphones" referrerpolicy="no-referrer">
+          <p style="font-size:0.45rem;color:#9ca3af;margin:2px 0;">Categoría: Electrónica &gt; Audio &gt; Audífonos</p>
+          <div class="p5-name">Audífonos Inalámbricos Bluetooth 5.0 Cancelación de Ruido Batería 40h Color Negro Mate Modelo 2026</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;">
+            <p style="font-size:0.45rem;width:65%;line-height:1.3;color:#6b7280;">Envío gratis. Devolución en 30 días. Garantía de 1 año.</p>
+            <div class="p5-btn">Comprar</div>
+          </div>
+        </div>
+        <div class="piece-label">5. Tarjeta Producto</div>
+      </div>
+      <!-- 6. Menú -->
+      <div class="broken-piece piece-6">
+        <div class="piece-inner" style="display:flex;flex-direction:column;">
+          <div class="p6-title">La Trattoria</div>
+          <div class="p6-item">Pizza Margarita .................................................................................  $15.000</div>
+          <div class="p6-item">Pasta Carbonara .................................................................................  $22.000</div>
+          <div class="p6-item">Lasagna de Carne .................................................................................  $25.000</div>
+          <div class="p6-promo" style="margin-top:auto;">¡TODOS LOS PLATOS VIENEN CON PAN DE AJO GRATIS SI PIDES ANTES DE LAS 7PM!</div>
+        </div>
+        <div class="piece-label">6. Menú Restaurante</div>
+      </div>
+      <!-- 7. Noticias -->
+      <div class="broken-piece piece-7">
+        <div class="piece-inner" style="display:flex;flex-direction:column;">
+          <div class="p7-banner">ÚLTIMA HORA</div>
+          <div class="p7-ad">ANUNCIO: COMPRA AQUÍ</div>
+          <div class="p7-headline">EL GOBIERNO ANUNCIA NUEVAS MEDIDAS ECONÓMICAS PARA ESTE AÑO</div>
+          <div class="p7-row">
+            <img class="p7-img" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400" alt="Money" referrerpolicy="no-referrer">
+            <div class="p7-body">El ministro de hacienda declaró que las nuevas políticas afectarán positivamente a la clase media. <span style="color:#2563eb;text-decoration:underline;">Leer más...</span></div>
+          </div>
+          <div class="p7-ad" style="margin-top:auto;">ANUNCIO: VIAJA A CANCÚN</div>
+        </div>
+        <div class="piece-label">7. Portal de Noticias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S29: EJEMPLOS DE SOLUCIÓN (Antes/Después) -->
+<section class="slide" id="s29">
+  <div class="slide-inner">
+    <h2 class="section-title">Ejemplos de Solución</h2>
+    <p class="section-subtitle">Así se ve un rediseño aplicando los principios de composición.</p>
+    <div class="examples-selector" id="example-tabs">
+      <button class="example-tab active" data-tab="0">1. Flyer Redes</button>
+      <button class="example-tab" data-tab="1">2. App Moda</button>
+      <button class="example-tab" data-tab="2">3. Miniatura YT</button>
+      <button class="example-tab" data-tab="3">4. Diapositiva PPT</button>
+      <button class="example-tab" data-tab="4">5. Tarjeta Producto</button>
+      <button class="example-tab" data-tab="5">6. Menú</button>
+      <button class="example-tab" data-tab="6">7. Noticias</button>
+    </div>
+    <!-- Panel 1: Flyer -->
+    <div class="example-panel active card" id="panel-0">
+      <div class="before-after">
+        <div class="ba-before">
+          <div class="before-after-label">Antes (Roto)</div>
+          <div class="mini-preview">
+            <div class="mini-flyer-bad">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;" alt="b" referrerpolicy="no-referrer">
+              <span style="position:relative;z-index:2;font-family:serif;font-size:1.8rem;color:#b91c1c;font-weight:700;text-shadow:2px 2px 0 white;text-align:center;">HAMBURGUESAS!!</span>
+              <span style="position:absolute;bottom:20px;right:0;background:#2563eb;color:#fde047;padding:4px 12px;font-weight:700;z-index:3;">2x1 HOY</span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-middle">→</div>
+        <div class="ba-after">
+          <div class="before-after-label">Después (Arreglado)</div>
+          <div class="mini-preview">
+            <div class="mini-flyer-good">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" style="position:absolute;right:0;top:0;bottom:0;width:55%;object-fit:cover;" alt="a" referrerpolicy="no-referrer">
+              <div style="position:absolute;inset:0;background:linear-gradient(90deg,#020617 50%, transparent 100%);"></div>
+              <div style="position:relative;z-index:2;padding:24px;display:flex;flex-direction:column;justify-content:center;height:100%;">
+                <h3 style="color:white;font-size:1.4rem;font-weight:900;line-height:1;margin-bottom:4px;">Burger<br><span style="color:var(--emerald);">Master</span></h3>
+                <p style="color:var(--emerald);font-weight:700;font-size:1rem;margin-bottom:12px;">2x1 HOY</p>
+                <button style="background:var(--emerald);color:white;border:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:0.8rem;cursor:default;width:max-content;">Pedir ya</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnosis-solution">
+        <div class="diag-box"><h4>Diagnóstico:</h4><ul><li>Falta de contraste.</li><li>Cero espacio negativo.</li><li>Jerarquía confusa.</li></ul></div>
+        <div class="sol-box"><h4>Solución Aplicada:</h4><ul><li>Regla de Tercios.</li><li>Espacio Negativo oscuro.</li><li>Jerarquía clara (Título → Promo → Botón).</li></ul></div>
+      </div>
+    </div>
+    <!-- Panel 2: App Moda -->
+    <div class="example-panel card" id="panel-1">
+      <div class="before-after">
+        <div class="ba-before">
+          <div class="before-after-label">Antes (Roto)</div>
+          <div class="mini-preview">
+            <div class="mini-moda-bad">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;font-weight:900;text-align:center;padding:4px;line-height:1;color:black;">NUEVA COLECCIÓN</div>
+              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400" style="width:100%;height:50%;object-fit:cover;" alt="f" referrerpolicy="no-referrer">
+              <div style="background:black;color:white;text-align:center;padding:12px;font-size:1rem;font-weight:700;margin-top:auto;">COMPRAR</div>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-middle">→</div>
+        <div class="ba-after">
+          <div class="before-after-label">Después (Arreglado)</div>
+          <div class="mini-preview">
+            <div class="mini-moda-good">
+              <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400" style="width:100%;height:65%;object-fit:cover;" alt="f" referrerpolicy="no-referrer">
+              <div style="background:white;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;border-radius:16px 16px 0 0;margin-top:-12px;box-shadow:0 -8px 20px rgba(0,0,0,0.1);">
+                <span style="font-size:0.85rem;font-weight:600;color:#1e293b;margin-bottom:6px;">Nueva Colección</span>
+                <button style="background:#1e293b;color:white;border:none;border-radius:999px;padding:6px 16px;font-size:0.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:default;">Comprar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnosis-solution">
+        <div class="diag-box"><h4>Diagnóstico:</h4><ul><li>Sobrecarga cognitiva.</li><li>Texto gigante sin respiro.</li><li>Botón desproporcionado.</li></ul></div>
+        <div class="sol-box"><h4>Solución Aplicada:</h4><ul><li>Macro espacio (imagen limpia).</li><li>Jerarquía tipográfica elegante.</li><li>Botón CTA refinado.</li></ul></div>
+      </div>
+    </div>
+    <!-- Panel 3: Miniatura YT -->
+    <div class="example-panel card" id="panel-2">
+      <div class="before-after">
+        <div class="ba-before">
+          <div class="before-after-label">Antes (Roto)</div>
+          <div class="mini-preview" style="background:#7c3aed;border:3px solid #fde047;overflow:hidden;border-radius:12px;">
+            <img src="https://images.unsplash.com/photo-1516245834210-c4c142787335?w=400" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;" alt="c" referrerpolicy="no-referrer">
+            <span style="position:absolute;top:20px;text-align:center;width:calc(100%-24px);left:12px;background:rgba(220,38,38,0.85);color:white;font-weight:700;font-size:0.85rem;padding:6px;z-index:2;">CÓMO HACERSE RICO EN 2026</span>
+            <span style="position:absolute;bottom:20px;left:8px;color:#fde047;font-size:1.5rem;font-weight:900;text-shadow:2px 2px 0 black;z-index:2;">¡¡SECRETO!!</span>
+          </div>
+        </div>
+        <div class="arrow-middle">→</div>
+        <div class="ba-after">
+          <div class="before-after-label">Después (Arreglado)</div>
+          <div class="mini-preview" style="background:#0f172a;overflow:hidden;border-radius:12px;">
+            <img src="https://images.unsplash.com/photo-1516245834210-c4c142787335?w=400" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4;" alt="c" referrerpolicy="no-referrer">
+            <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.5) 60%,transparent 100%);"></div>
+            <div style="position:relative;z-index:2;padding:16px;height:100%;display:flex;flex-direction:column;justify-content:center;">
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:white;line-height:1;">EL SECRETO<br><span style="color:#fde047;">PARA 2026</span></span>
+              <span style="background:#dc2626;color:white;font-weight:700;padding:3px 10px;font-size:0.65rem;width:max-content;margin-top:8px;">NUEVO MÉTODO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnosis-solution">
+        <div class="diag-box"><h4>Diagnóstico:</h4><ul><li>Colores que compiten.</li><li>Texto ilegible sobre fondo.</li><li>Falta de punto focal.</li></ul></div>
+        <div class="sol-box"><h4>Solución Aplicada:</h4><ul><li>Contraste con gradiente oscuro.</li><li>Texto alineado (Flujo F).</li><li>Jerarquía de color (Amarillo/Rojo).</li></ul></div>
+      </div>
+    </div>
+    <!-- Panel 4: PPT -->
+    <div class="example-panel card" id="panel-3">
+      <div class="before-after">
+        <div class="ba-before">
+          <div class="before-after-label">Antes (Roto)</div>
+          <div class="mini-preview">
+            <div class="mini-ppt-bad">
+              <div class="p4-title">LA HISTORIA DE LA WEB</div>
+              <div class="p4-text">La World Wide Web (WWW) o red informática mundial es un sistema de distribución de documentos de hipertexto o hipermedios interconectados y accesibles a través de Internet. Con un navegador web, un usuario visualiza sitios web compuestos de páginas web que pueden contener textos, imágenes, vídeos u otros contenidos multimedia.</div>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-middle">→</div>
+        <div class="ba-after">
+          <div class="before-after-label">Después (Arreglado)</div>
+          <div class="mini-preview">
+            <div class="mini-ppt-good">
+              <h3 style="font-size:0.9rem;font-weight:900;border-bottom:3px solid #3b82f6;padding-bottom:4px;margin-bottom:10px;width:max-content;color:#0f172a;">Historia de la Web</h3>
+              <div style="display:flex;gap:12px;align-items:center;">
+                <ul style="flex:1;list-style:none;">
+                  <li style="display:flex;gap:6px;align-items:center;margin-bottom:6px;font-size:0.65rem;color:#334155;"><div style="width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>Creada en 1989</li>
+                  <li style="display:flex;gap:6px;align-items:center;margin-bottom:6px;font-size:0.65rem;color:#334155;"><div style="width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>Tim Berners-Lee</li>
+                  <li style="display:flex;gap:6px;align-items:center;margin-bottom:6px;font-size:0.65rem;color:#334155;"><div style="width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>Hipertexto global</li>
+                </ul>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" style="width:45%;height:60px;object-fit:cover;border-radius:6px;" alt="web" referrerpolicy="no-referrer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnosis-solution">
+        <div class="diag-box"><h4>Diagnóstico:</h4><ul><li>Muro de texto (fatiga visual).</li><li>Poco contraste (rojo sobre azul).</li><li>Imágenes mal ubicadas.</li></ul></div>
+        <div class="sol-box"><h4>Solución Aplicada:</h4><ul><li>Viñetas (Micro espacio).</li><li>Regla de tercios (Texto izq, Img der).</li><li>Contraste limpio (Fondo blanco).</li></ul></div>
+      </div>
+    </div>
+    <!-- Panel 5: Tarjeta Producto -->
+    <div class="example-panel card" id="panel-4">
+      <div class="before-after">
+        <div class="ba-before">
+          <div class="before-after-label">Antes (Roto)</div>
+          <div class="mini-preview" style="background:white;padding:8px;border-radius:12px;overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" style="width:100%;height:55px;object-fit:cover;margin-bottom:4px;" alt="h" referrerpolicy="no-referrer">
+            <p style="font-size:0.6rem;font-weight:700;color:#0f172a;line-height:1.2;">Audífonos Inalámbricos Bluetooth 5.0 Cancelación de Ruido Batería 40h Color Negro Mate Modelo 2026</p>
+            <button style="background:#f97316;color:white;font-size:0.45rem;padding:3px 6px;margin-top:4px;border:none;cursor:default;">Comprar</button>
+          </div>
+        </div>
+        <div class="arrow-middle">→</div>
+        <div class="ba-after">
+          <div class="before-after-label">Después (Arreglado)</div>
+          <div class="mini-preview" style="background:white;padding:8px;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.1);">
+            <div style="background:#f1f5f9;border-radius:8px;padding:8px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;height:55px;">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" style="height:100%;object-fit:contain;mix-blend-mode:multiply;" alt="h" referrerpolicy="no-referrer">
+            </div>
+            <p style="font-size:0.7rem;font-weight:700;color:#0f172a;line-height:1.2;margin-bottom:2px;">Audífonos Noise Cancelling</p>
+            <p style="font-size:0.55rem;color:#64748b;margin-bottom:4px;">Bluetooth 5.0 • 40h Batería</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:1rem;font-weight:900;color:#0f172a;">$129</span>
+              <button style="background:#2563eb;color:white;font-weight:700;font-size:0.5rem;padding:5px 10px;border:none;border-radius:6px;cursor:default;">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnosis-solution">
+        <div class="diag-box"><h4>Diagnóstico:</h4><ul><li>Título excesivamente largo.</li><li>Botón de compra invisible.</li><li>Falta de jerarquía visual.</li></ul></div>
+        <div class="sol-box"><h4>Solución Aplicada:</h4><ul><li>Resumir información (Micro espacio).</li><li>Destacar precio (Jerarquía de tamaño).</li><li>Botón CTA grande y claro.</li></ul></div>
+      </div>
+    </div>
+    <!-- Panel 6: Menú -->
+    <div class="example-panel card" id="panel-5">
+      <div class="before-after">
+        <div class="ba-before">
+          <div class="before-after-label">Antes (Roto)</div>
+          <div class="mini-preview" style="background:#fed7aa;border:3px solid #92400e;border-radius:12px;padding:12px;">
+            <div class="p6-title" style="font-size:1.2rem;margin-bottom:6px;">La Trattoria</div>
+            <div style="font-size:0.45rem;font-weight:700;overflow:hidden;margin-bottom:2px;">Pizza Margarita .............................................................. $15.000</div>
+            <div style="font-size:0.45rem;font-weight:700;overflow:hidden;margin-bottom:2px;">Pasta Carbonara .............................................................. $22.000</div>
+            <div style="font-size:0.4rem;color:#dc2626;font-weight:700;margin-top:8px;text-align:center;">¡TODOS LOS PLATOS VIENEN CON PAN DE AJO GRATIS!</div>
+          </div>
+        </div>
+        <div class="arrow-middle">→</div>
+        <div class="ba-after">
+          <div class="before-after-label">Después (Arreglado)</div>
+          <div class="mini-preview" style="background:#fafaf9;border:2px solid #e7e5e4;border-radius:12px;padding:14px;">
+            <h3 style="font-family:serif;font-size:1rem;font-weight:700;text-align:center;border-bottom:1px solid #d6d3d1;padding-bottom:6px;margin-bottom:10px;color:#292524;">La Trattoria</h3>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #d6d3d1;padding-bottom:6px;margin-bottom:6px;">
+              <span style="font-weight:600;font-size:0.7rem;color:#44403c;">Pizza Margarita</span>
+              <span style="font-weight:900;font-size:0.8rem;color:#1c1917;">$15.000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span style="font-weight:600;font-size:0.7rem;color:#44403c;">Pasta Carbonara</span>
+              <span style="font-weight:900;font-size:0.8rem;color:#1c1917;">$22.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnosis-solution">
+        <div class="diag-box"><h4>Diagnóstico:</h4><ul><li>Puntos suspensivos ilegibles.</li><li>Alineación forzada.</li><li>Falta de elegancia visual.</li></ul></div>
+        <div class="sol-box"><h4>Solución Aplicada:</h4><ul><li>Alineación Flexbox (Espacio negativo).</li><li>Jerarquía tipográfica (Plato vs Precio).</li><li>Diseño limpio y escaneable.</li></ul></div>
+      </div>
+    </div>
+    <!-- Panel 7: Noticias -->
+    <div class="example-panel card" id="panel-6">
+      <div class="before-after">
+        <div class="ba-before">
+          <div class="before-after-label">Antes (Roto)</div>
+          <div class="mini-preview" style="background:#f3f4f6;border:3px solid #9ca3af;border-radius:12px;padding:8px;overflow:hidden;">
+            <div style="background:#dc2626;color:white;text-align:center;font-size:0.55rem;padding:2px;margin-bottom:3px;font-weight:700;">ÚLTIMA HORA</div>
+            <div style="background:#fef08a;text-align:center;font-size:0.45rem;padding:4px;border:1px dashed #9ca3af;margin-bottom:4px;font-weight:700;">ANUNCIO: COMPRA AQUÍ</div>
+            <div style="font-size:0.8rem;font-weight:900;line-height:1.1;">EL GOBIERNO ANUNCIA NUEVAS MEDIDAS...</div>
+          </div>
+        </div>
+        <div class="arrow-middle">→</div>
+        <div class="ba-after">
+          <div class="before-after-label">Después (Arreglado)</div>
+          <div class="mini-preview" style="background:white;border:2px solid #e2e8f0;border-radius:12px;padding:12px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#dc2626;animation:pulse-dot 2s infinite;"></div>
+              <span style="color:#dc2626;font-weight:700;font-size:0.5rem;letter-spacing:.1em;text-transform:uppercase;">Última Hora</span>
+            </div>
+            <p style="font-size:0.7rem;font-weight:900;color:#0f172a;line-height:1.2;margin-bottom:6px;">El gobierno anuncia nuevas medidas económicas</p>
+            <div style="display:flex;gap:6px;">
+              <p style="font-size:0.5rem;color:#64748b;line-height:1.4;flex:1;">El ministro de hacienda declaró que las nuevas políticas afectarán positivamente a la clase media...</p>
+              <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400" style="width:36px;height:36px;object-fit:cover;border-radius:6px;flex-shrink:0;" alt="m" referrerpolicy="no-referrer">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagnosis-solution">
+        <div class="diag-box"><h4>Diagnóstico:</h4><ul><li>Anuncios más grandes que la noticia.</li><li>Uso excesivo de mayúsculas.</li><li>Jerarquía invertida.</li></ul></div>
+        <div class="sol-box"><h4>Solución Aplicada:</h4><ul><li>Separar contenido de anuncios (Grid).</li><li>Uso correcto de mayúsculas/minúsculas.</li><li>Indicador visual sutil (Punto rojo).</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S30: CLÍNICA DE DISEÑO (Actividad) -->
+<section class="slide" id="s30">
+  <div class="slide-inner text-center">
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:40px;">
+      <span style="font-size:3rem;">🔧</span>
+      <h2 class="section-title" style="margin:0;">Clínica de Diseño</h2>
+    </div>
+    <div class="activity-card">
+      <h3 style="font-size:var(--text-3xl);font-weight:700;color:var(--cyan);margin-bottom:32px;display:flex;align-items:center;gap:16px;justify-content:center;">
+        👥 Instrucciones (Grupos de 4)
+      </h3>
+      <ol>
+        <li>Abran sus portátiles y entren a <strong>Canva</strong> o <strong>Figma</strong>.</li>
+        <li>Elijan 1 de las 7 <strong>Piezas Rotas</strong> que acabamos de ver.</li>
+        <li>Pueden tomarle un pantallazo o recrearla rápidamente.</li>
+        <li><strong>Diagnostiquen:</strong> ¿Qué principios de composición viola?</li>
+        <li><strong>Operen:</strong> Rediseñen la pieza aplicando Jerarquía, Tercios y Espacio Negativo.</li>
+        <li>Preparen la presentación del "Antes y Después".</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- S31: ACTIVIDAD LANDING PAGE EXPRESS -->
+<section class="slide" id="s31">
+  <div class="slide-inner text-center">
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:40px;">
+      <span style="font-size:3rem;">🚀</span>
+      <h2 class="section-title" style="margin:0;">Actividad: Landing Page Express</h2>
+    </div>
+    <div class="activity-card">
+      <h3 style="font-size:var(--text-3xl);font-weight:700;color:var(--emerald);margin-bottom:24px;display:flex;align-items:center;gap:16px;justify-content:center;">
+        🖼️ Instrucciones
+      </h3>
+      <p style="font-size:var(--text-2xl);color:var(--slate-300);margin-bottom:24px;line-height:1.5;">
+        Diseñen el "Above the Fold" (la primera pantalla) de una Landing Page para un producto ficticio aplicando los principios vistos.
+      </p>
+      <ol>
+        <li><strong>Producto:</strong> Una app para pasear perros, un café inteligente, o inventen uno.</li>
+        <li><strong>Jerarquía:</strong> Título claro, subtítulo, y un Call to Action (Botón) que resalte.</li>
+        <li><strong>Regla de los Tercios:</strong> Ubiquen el elemento principal (imagen o texto) en los puntos de intersección.</li>
+        <li><strong>Espacio Negativo:</strong> Dejen que los elementos respiren. No amontonen.</li>
+        <li><strong>Patrón Z o F:</strong> Guíen la vista del usuario hacia el botón de acción.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- S32: EJEMPLO LANDING PAGE EXPRESS -->
+<section class="slide" id="s32">
+  <div class="slide-inner">
+    <h2 class="section-title text-center">Ejemplo: Landing Page Express</h2>
+    <p class="section-subtitle text-center">Observa cómo se aplican todos los principios en un diseño real.</p>
+    <div class="landing-mockup">
+      <header class="lp-header">
+        <div class="lp-logo"><div class="lp-logo-icon"></div>DogGo</div>
+        <nav class="lp-nav"><span>Servicios</span><span>Paseadores</span><span>Testimonios</span></nav>
+        <span class="lp-login">Iniciar Sesión</span>
+      </header>
+      <div class="lp-hero">
+        <div class="lp-text">
+          <h1>Tu mejor amigo,<br>en las mejores manos.</h1>
+          <p>Paseadores certificados y amantes de los perros listos para darle a tu mascota el ejercicio que necesita.</p>
+          <div class="lp-btns">
+            <button class="lp-btn-primary">Agendar Paseo</button>
+            <button class="lp-btn-secondary">Ver Precios</button>
+          </div>
+        </div>
+        <div class="lp-image">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=2069&auto=format&fit=crop" alt="Perro feliz" referrerpolicy="no-referrer">
+        </div>
+      </div>
+      <div class="lp-analysis">
+        <strong>Análisis:</strong> Jerarquía clara (Título → Botón → Subtítulo). Imagen en el tercio derecho. Espacio negativo amplio a la izquierda. El patrón Z guía desde el logo hasta el botón "Agendar Paseo".
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S33: CIERRE -->
+<section class="slide" id="s33">
+  <div class="slide-inner text-center">
+    <div style="font-size:5rem;margin-bottom:32px;animation:float 3s ease-in-out infinite;">🚀</div>
+    <h2 class="hero-title">
+      El Poder está en<br>
+      <span class="hero-gradient">Tus Manos</span>
+    </h2>
+    <p class="lead-text" style="max-width:800px;margin:32px auto;color:#a7f3d0;">
+      Ya no eres solo un consumidor de contenido. Ahora tienes las herramientas para ser un <strong style="color:white;">creador profesional</strong>.
+    </p>
+    <div style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);border-radius:999px;padding:24px 56px;display:inline-block;margin-top:24px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:var(--text-3xl);color:white;letter-spacing:.3em;">¡A DISEÑAR!</p>
+    </div>
+  </div>
+</section>
+
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-16px);} }
+
+
+</body>
+
+<script>
+// ===== SECTION IDs & LABELS =====
+const sections = document.querySelectorAll('.slide');
+const totalSections = sections.length;
+const backToTop = document.getElementById('back-to-top');
+const currentSectionEl = document.getElementById('current-section');
+const sideDotsContainer = document.getElementById('side-dots');
+
+// ===== BUILD SIDE DOTS =====
+sections.forEach((s, i) => {
+  const dot = document.createElement('a');
+  dot.className = 'dot';
+  dot.href = '#' + s.id;
+  dot.title = 'Sección ' + (i+1);
+  sideDotsContainer.appendChild(dot);
+});
+const dots = document.querySelectorAll('.dot');
+
+// ===== INTERSECTION OBSERVER for animations =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const inner = entry.target.querySelector('.slide-inner');
+      if (inner) inner.classList.add('visible');
+      const staggers = entry.target.querySelectorAll('.fade-stagger');
+      staggers.forEach(s => s.classList.add('visible'));
+      const paths = entry.target.querySelectorAll('path[stroke-dasharray]');
+      paths.forEach(path => {
+        const len = path.getTotalLength ? path.getTotalLength() : 2000;
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+        path.style.transition = 'stroke-dashoffset 2s ease 0.3s';
+        requestAnimationFrame(() => { path.style.strokeDashoffset = 0; });
+      });
+    }
+  });
+}, { threshold: 0.12 });
+sections.forEach(s => observer.observe(s));
+
+// ===== ACTIVE SECTION + DOTS =====
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = Array.from(sections).indexOf(entry.target);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      currentSectionEl.textContent = idx + 1;
+      // Update nav active link
+      document.querySelectorAll('#top-nav .nav-links a, #mobile-drawer a').forEach(a => {
+        a.classList.toggle('nav-active', a.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => sectionObserver.observe(s));
+
+// ===== PROGRESS BAR =====
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  backToTop.classList.toggle('visible', scrollTop > 400);
+}, { passive: true });
+
+// ===== BACK TO TOP =====
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ===== FULLSCREEN =====
+document.getElementById('btn-fullscreen').addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => console.log(err));
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+// ===== HAMBURGER MENU =====
+const hamburger = document.getElementById('hamburger');
+const mobileDrawer = document.getElementById('mobile-drawer');
+if (hamburger && mobileDrawer) {
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileDrawer.classList.toggle('open', open);
+  });
+  mobileDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileDrawer.classList.remove('open');
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileDrawer.contains(e.target)) {
+      hamburger.classList.remove('open');
+      mobileDrawer.classList.remove('open');
+    }
+  });
+}
+
+// ===== KEYBOARD NAVIGATION =====
+let sectionRefs = Array.from(sections);
+function getCurrentSectionIndex() {
+  const scrollMid = window.scrollY + window.innerHeight / 2;
+  for (let i = sectionRefs.length - 1; i >= 0; i--) {
+    if (sectionRefs[i].getBoundingClientRect().top + window.scrollY <= scrollMid) return i;
+  }
+  return 0;
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+    e.preventDefault();
+    const cur = getCurrentSectionIndex();
+    if (cur < sectionRefs.length - 1) sectionRefs[cur + 1].scrollIntoView({ behavior: 'smooth' });
+  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault();
+    const cur = getCurrentSectionIndex();
+    if (cur > 0) sectionRefs[cur - 1].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// ===== EXAMPLE TABS =====
+const tabs = document.querySelectorAll('.example-tab');
+const panels = document.querySelectorAll('.example-panel');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const idx = tab.dataset.tab;
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + idx).classList.add('active');
+  });
+});
+
+// ===== ANIMATE Z AND F PATHS =====
+function animatePath(pathId) {
+  const path = document.getElementById(pathId);
+  if (!path) return;
+  const len = 2000;
+  path.style.strokeDasharray = len;
+  path.style.strokeDashoffset = len;
+  setTimeout(() => {
+    path.style.transition = 'stroke-dashoffset 2.5s ease';
+    path.style.strokeDashoffset = 0;
+  }, 400);
+}
+const pathObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.target.id === 's21') animatePath('z-path');
+      if (entry.target.id === 's22') animatePath('f-path');
+    }
+  });
+}, { threshold: 0.3 });
+const s21 = document.getElementById('s21');
+const s22 = document.getElementById('s22');
+if (s21) pathObserver.observe(s21);
+if (s22) pathObserver.observe(s22);
+
+// ===== INITIAL ANIMATION =====
+setTimeout(() => {
+  const firstInner = document.querySelector('#s1 .slide-inner');
+  if (firstInner) firstInner.classList.add('visible');
+}, 80);
+</script>
+
+</body>
+</html>
